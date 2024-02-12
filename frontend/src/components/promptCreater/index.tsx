@@ -5,11 +5,11 @@ import Image from "next/image";
 
 export default function PromptCreater() {
   const generatedImage = useImageContext();
-  // const setImageFetch = generatedImage.promptImageHandler;
+  const setImageFetch = generatedImage.promptImageHandler;
   const setLoader = generatedImage.setDefaultLoader;
   const [imgData, setImgData] = useState("");
   const promptRef = useRef<any>();
-  const [imageFetch, setImageFetch] = useState<any>();
+  // const [imageFetch, setImageFetch] = useState<any>();
 
   const imageHandler = async (e: any) => {
     setLoader(true);
@@ -19,7 +19,8 @@ export default function PromptCreater() {
     const randomString = Math.random().toFixed(7);
     const augmentedInputValue = `${prompt} ${randomString}`;
     const modelUrl =
-      "https://api-inference.huggingface.co/models/kuldeepsingh-in/kd-project-google-03";
+      "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5";
+    // "https://api-inference.huggingface.co/models/kuldeepsingh-in/kd-project-google-03";
 
     try {
       const response: any = await Promise.race([
@@ -90,7 +91,7 @@ export default function PromptCreater() {
           </button>
         </div>
       </form>
-      {imageFetch && (
+      {/* {imageFetch && (
         <Image
           src={imageFetch}
           alt="Generating image..."
@@ -98,7 +99,7 @@ export default function PromptCreater() {
           height={1200}
           className="w-full h-full rounded-3xl"
         />
-      )}
+      )} */}
     </div>
   );
 }
