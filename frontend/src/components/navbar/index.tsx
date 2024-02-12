@@ -27,10 +27,10 @@ export default function NavBar() {
         <Link href="/" className="flex items-end">
           <img
             src="/Assests/homeAssests/logonew.png"
-            className="h-12 md:h-16 lg:h-20"
+            className="h-10 md:h-14 lg:h-16"
             alt="WooPond Logo"
           />
-          <span className="text-xl md:text-2xl lg:text-4xl -ml-2 font-bold font-inika text-primary">
+          <span className="text-xl md:text-2xl lg:text-3xl -ml-2 font-bold font-inika text-primary">
             WooPond
           </span>
         </Link>
@@ -57,7 +57,7 @@ export default function NavBar() {
           </svg>
         </button>
         <div className="hidden w-full md:block md:w-auto">
-          <ul className="font-normal font-inter lg:text-xl xl:text-2xl flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-4 xl:space-x-8 md:mt-0 md:border-0">
+          <ul className="font-normal font-inter lg:text-xl xl:text-xl flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-4 xl:space-x-8 md:mt-0 md:border-0">
             <li>
               <Link
                 href="#"
@@ -104,7 +104,7 @@ export default function NavBar() {
         <button>
           <Link
             href="#"
-            className="hidden md:inline bg-lightGreen hover:bg-teal-300 font-semibold lg:font-bold lg:text-2xl py-2 px-4 md:border-0 md:py-5 md:px-6 lg:px-8  xl:px-10 lg:py-6 rounded-full text-gray-800"
+            className="hidden md:inline bg-lightGreen hover:bg-teal-300 font-semibold lg:font-bold lg:text-xl py-2 px-4 md:border-0 md:py-4 md:px-6 lg:px-5  xl:px-6 lg:py-4 rounded-full text-gray-800"
           >
             Sign Up
           </Link>

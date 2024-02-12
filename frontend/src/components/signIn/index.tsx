@@ -1,9 +1,9 @@
 import AuthForm from "../authForm";
 
-export default function SignUp() {
+export default function SignIn() {
   return (
     <div>
-      <AuthForm signUp={true} />
+      <AuthForm signUp={false} />
     </div>
   );
 }

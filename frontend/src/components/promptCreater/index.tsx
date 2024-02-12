@@ -27,7 +27,7 @@ export default function PromptCreater() {
         body: JSON.stringify({
           input: augmentedInputValue,
           modelUrl:
-            "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5",
+            "https://api-inference.huggingface.co/models/kuldeepsingh-in/kd-project-google-03",
         }),
       });
       if (!response.ok) {
@@ -45,11 +45,14 @@ export default function PromptCreater() {
   };
 
   return (
-    <div className="max-w-xl lg:max-w-3xl md:pl-5 z-30 relative pt-2 md:pt-4 lg:pt-10 flex flex-col gap-3">
-      <h2 className="mx-auto font-inika text-xl md:text-3xl  lg:text-[43px] py-1 md:py-2 lg:py-4 lg:pb-6 font-bold text-primary">
+    <div className="max-w-xl md:max-w-md lg:max-w-lg xl:max-w-xl md:pl-5 z-30 relative flex flex-col gap-3">
+      {/* <h2 className="mx-auto font-inika text-xl md:text-2xl lg:text-[28px] xl:text-[32px] py-1 md:py-2 lg:pb-2 font-bold text-primary">
         Hello da Vinci,Start Creating Now!
-      </h2>
-      <form onSubmit={imageHandler}>
+      </h2> */}
+      <form
+        onSubmit={imageHandler}
+        className="focus:ring-4 border-4  border-white rounded-full p-1"
+      >
         <label
           htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-900 sr-only "
@@ -62,13 +65,13 @@ export default function PromptCreater() {
             type="search"
             ref={promptRef}
             id="default-search"
-            className="block outline-none w-full rounded-full p-4 md:p-5 lg:p-8 ps-5 text-sm lg:text-2xl text-gray-900 bg-lightGray focus:ring-teal-200 focus:ring-2 "
+            className="block outline-none w-full focus:ring-4 focus:ring-lightGreen rounded-full p-4 md:p-5 lg:p-5 ps-5 text-sm lg:text-xl text-gray-900 bg-white"
             placeholder="Create An Image..."
             required
           />
           <button
             type="submit"
-            className="text-gray-800 font-inika rounded-full absolute end-2.5 bottom-1 lg:bottom-3 bg-lightGreen hover:bg-teal-300 focus:ring-4 focus:outline-none focus:ring-blue-300 md:text-lg lg:text-2xl font-semibold px-3 py-2 md:px-5 lg:px-10 md:py-3 lg:py-5"
+            className="text-gray-800 font-inika rounded-full absolute end-2.5 bottom-1.5 md:bottom-1 lg:bottom-1.5 bg-lightGreen hover:bg-teal-300 focus:ring-2 focus:outline-none focus:ring-blue-300 md:text-lg lg:text-2xl font-semibold px-4 py-2 md:px-5 lg:px-8 md:py-3 lg:py-3"
           >
             Create
           </button>
