@@ -1,46 +1,59 @@
 "use client";
 import { useContext, useRef, useState } from "react";
 import { useImageContext } from "../contextApi/imageContext";
+import Image from "next/image";
 
 export default function PromptCreater() {
   const generatedImage = useImageContext();
-  const setImageFetch = generatedImage.promptImageHandler;
+  // const setImageFetch = generatedImage.promptImageHandler;
   const setLoader = generatedImage.setDefaultLoader;
   const [imgData, setImgData] = useState("");
   const promptRef = useRef<any>();
+  const [imageFetch, setImageFetch] = useState<any>();
 
   const imageHandler = async (e: any) => {
     setLoader(true);
     setImageFetch("");
     e.preventDefault();
     const prompt = promptRef.current.value;
-    // const randomString = Math.random().toString(36).substring(7);
     const randomString = Math.random().toFixed(7);
-    console.log("randomString--->", randomString);
     const augmentedInputValue = `${prompt} ${randomString}`;
+    const modelUrl =
+      "https://api-inference.huggingface.co/models/kuldeepsingh-in/kd-project-google-03";
+
     try {
-      const response = await fetch("/api/prompt-to-img", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          input: augmentedInputValue,
-          modelUrl:
-            "https://api-inference.huggingface.co/models/kuldeepsingh-in/kd-project-google-03",
+      const response: any = await Promise.race([
+        fetch("/api/prompt-to-img", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            input: augmentedInputValue,
+            modelUrl,
+          }),
         }),
-      });
+        new Promise(
+          (_, reject) =>
+            setTimeout(() => reject(new Error("Request timeout")), 30000) // Set a timeout of 10 seconds
+        ),
+      ]);
+
       if (!response.ok) {
         throw new Error("Failed to fetch image");
       }
-      console.log("response--->", response);
+
       const data = await response.arrayBuffer();
       const blob = new Blob([data], { type: "image/png" });
+
       const imgUrl = URL.createObjectURL(blob);
+
       setImageFetch(imgUrl);
-      console.log("imgUrl---->", imgUrl);
     } catch (err) {
-      console.log("err---->", err);
+      console.log("Error:", err);
+      console.error("Error:", err);
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -77,6 +90,15 @@ export default function PromptCreater() {
           </button>
         </div>
       </form>
+      {imageFetch && (
+        <Image
+          src={imageFetch}
+          alt="Generating image..."
+          width={1000}
+          height={1200}
+          className="w-full h-full rounded-3xl"
+        />
+      )}
     </div>
   );
 }
