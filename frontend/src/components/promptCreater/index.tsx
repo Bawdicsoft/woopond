@@ -35,7 +35,7 @@ export default function PromptCreater() {
         }),
         new Promise(
           (_, reject) =>
-            setTimeout(() => reject(new Error("Request timeout")), 100000) // Set a timeout of 10 seconds
+            setTimeout(() => reject(new Error("Request timeout")), 30000) // Set a timeout of 10 seconds
         ),
       ]);
 
