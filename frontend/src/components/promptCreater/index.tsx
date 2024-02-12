@@ -5,11 +5,11 @@ import Image from "next/image";
 
 export default function PromptCreater() {
   const generatedImage = useImageContext();
-  const setImageFetch = generatedImage.promptImageHandler;
+  // const setImageFetch = generatedImage.promptImageHandler;
   const setLoader = generatedImage.setDefaultLoader;
   const [imgData, setImgData] = useState("");
   const promptRef = useRef<any>();
-  // const [imageFetch, setImageFetch] = useState<any>();
+  const [imageFetch, setImageFetch] = useState<any>();
 
   const imageHandler = async (e: any) => {
     setLoader(true);
@@ -91,7 +91,7 @@ export default function PromptCreater() {
           </button>
         </div>
       </form>
-      {/* {imageFetch && (
+      {imageFetch && (
         <Image
           src={imageFetch}
           alt="Generating image..."
@@ -99,7 +99,7 @@ export default function PromptCreater() {
           height={1200}
           className="w-full h-full rounded-3xl"
         />
-      )} */}
+      )}
     </div>
   );
 }
