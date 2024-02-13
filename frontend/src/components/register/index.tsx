@@ -14,7 +14,7 @@ export default function Register() {
       {!user ? (
         <div className="">
           {modal ? (
-            <div>{switChModal == "signin" ? <SignIn /> : <SignUp />}</div>
+            <div>{switChModal == "signin" ? <SignIn /> : null}</div>
           ) : null}
         </div>
       ) : null}
