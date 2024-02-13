@@ -2,7 +2,6 @@
 import { useImageContext } from "@/components/contextApi/imageContext";
 
 import SignIn from "@/components/signIn";
-import SignUp from "../signUp";
 
 export default function Register() {
   const authModal = useImageContext();
