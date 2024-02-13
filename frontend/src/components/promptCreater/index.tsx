@@ -9,6 +9,7 @@ export default function PromptCreater() {
   const setLoader = generatedImage.setDefaultLoader;
   const setPrevImage = generatedImage.prevImageHandler;
   const imageType = generatedImage.imageType;
+  const setPromptCreater = generatedImage.promptCreaterHandler;
   const [imgData, setImgData] = useState("");
   const promptRef = useRef<any>();
   // const [imageFetch, setImageFetch] = useState<any>();
@@ -88,6 +89,7 @@ export default function PromptCreater() {
       const imgUrl = URL.createObjectURL(blob);
       setImageFetch(imgUrl);
       setPrevImage(imgUrl);
+      setPromptCreater(prompt);
       console.log("imgUrl---->", imgUrl);
     } catch (err) {
       console.log("err---->", err);

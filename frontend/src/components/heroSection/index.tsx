@@ -6,12 +6,14 @@ import { useImageContext } from "../contextApi/imageContext";
 import PromptCreater from "../promptCreater";
 import { PiDownloadSimpleLight } from "react-icons/pi";
 import { IoMdShareAlt } from "react-icons/io";
+import { BiSolidDownload } from "react-icons/bi";
 
 export default function HeroSection() {
   const generatedImage = useImageContext();
   const defaultLoader = useImageContext();
   const loader = defaultLoader.defaultLoader;
   const prevImage = generatedImage.prevImage;
+  const promptCreater = generatedImage.promptCreater;
   const imageFetch = generatedImage.image;
   const setImageType = generatedImage.imageTypeHandler;
   const [progress, setProgress] = useState(0);
@@ -26,6 +28,7 @@ export default function HeroSection() {
 
     return () => clearInterval(interval);
   }, []);
+
   const chooseImagList = [
     { title: "Realistic", img: "/Assests/homeAssests/realistic.jpg" },
     { title: "Fantasy", img: "/Assests/homeAssests/fantasy.jpg" },
@@ -34,6 +37,38 @@ export default function HeroSection() {
     { title: "Chaos", img: "/Assests/homeAssests/chaos.jpg" },
     { title: "Vibrant", img: "/Assests/homeAssests/vibrant.jpg" },
   ];
+  // downLoad code
+  const download = (filename: any, content: any) => {
+    let element = document.createElement("a");
+    element.setAttribute("href", content);
+    element.setAttribute("download", filename);
+    element.style.display = "none";
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  };
+
+  const handleDownload = async (e: any) => {
+    try {
+      const result = await fetch(`${imageFetch}`, {
+        method: "GET",
+        headers: {},
+      });
+      const blob = await result.blob();
+      const url = URL.createObjectURL(blob);
+      const imageUrl = !imageFetch
+        ? "/Assests/homeAssests/firstImage.jpg"
+        : url;
+      console.log(url.slice(5));
+      download(`${promptCreater}`, imageUrl);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div
       className="bg-lightGray max-h-max md:px-2 lg:px-10 xl:px-20 py-8"
@@ -155,14 +190,17 @@ export default function HeroSection() {
               <div className="grid grid-cols-2 md:flex gap-2 xl:gap-4 py-5 max-w-sm md:justify-center">
                 <button className="flex gap-2 justify-center items-center md:text-base lg:text-lg order-1 font-inter md:order-2 bg-lightGreen font-semibold text-black px-3 text-sm md:px-8 lg:px-12 py-4 md:py-4 lg:py-3 hover:bg-gray-900 rounded-full">
                   <span>Share</span>{" "}
-                  <IoMdShareAlt className="w-6 h-6 text-black font-bold" />
+                  <IoMdShareAlt className="h-5 w-5 lg:w-6 lg:h-6 text-black font-bold" />
                 </button>
                 {/* <button className="order-2 font-inter md:order-1 col-span-2 bg-lightGreen md:text-base lg:text-lg font-semibold text-gray-700 px-5 text-sm md:px-8 py-4 lg:py-4 md:py-4 hover:bg-teal-300 rounded-full">
                   Create Again
                 </button> */}
-                <button className="flex gap-2 justify-center items-center bg-lightGreen font-inter md:text-base lg:text-lg font-semibold text-black px-3 text-sm md:px-8 md:py-4 lg:px-12 py-4 lg:py-3  hover:bg-gray-900 rounded-full">
+                <button
+                  onClick={handleDownload}
+                  className="flex gap-2 justify-center items-center bg-lightGreen font-inter md:text-base lg:text-lg font-semibold text-black px-3 text-sm md:px-8 md:py-4 lg:px-12 py-4 lg:py-3  hover:bg-gray-900 rounded-full"
+                >
                   <span>Save </span>{" "}
-                  <PiDownloadSimpleLight className="w-6 h-6 text-black font-bold" />
+                  <BiSolidDownload className="h-5 w-5 lg:w-6 lg:h-6 text-black font-bold" />
                 </button>
               </div>
             </div>
