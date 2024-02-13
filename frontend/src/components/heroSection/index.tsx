@@ -59,7 +59,7 @@ export default function HeroSection() {
                     key={index}
                     className="flex flex-col justify-center items-center gap-2"
                   >
-                    <div className="w-16 h-16 md:w-28 md:h-28 lg:w-40 lg:h-40 xl:w-36 xl:h-36 rounded-3xl">
+                    <div className="w-16 h-16 md:w-28 md:h-28 lg:w-40 lg:h-40 xl:w-28 xl:h-28 rounded-3xl">
                       <Image
                         src={data.img}
                         alt="images"
@@ -68,16 +68,16 @@ export default function HeroSection() {
                         className="w-full h-full rounded-3xl"
                       />
                     </div>
-                    <h3 className="text-xs md:text-lg lg:text-xl font-semibold font-inika">
+                    <h3 className="text-xs md:text-lg font-semibold font-inika">
                       {data.title}
                     </h3>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="h-full w-full">
+            <div className="h-full w-full pt-20">
               <div
-                className="h-[450px] md:h-[470px] lg:h-[610px] w-full relative z-50 rounded-3xl"
+                className="h-[450px] md:h-[470px] lg:h-[510px] w-[400px] relative z-50 rounded-3xl"
                 style={{
                   border: `4px solid #fff`,
                   transition: "border-width 2s ease-in-out",
@@ -142,14 +142,14 @@ export default function HeroSection() {
                   </div>
                 )}
               </div>
-              <div className="grid grid-cols-2 md:flex gap-2 xl:gap-4 py-5 xl:pt-10 md:justify-center">
-                <button className="order-1 font-inter md:order-2 bg-brown md:text-base lg:text-xl font-semibold text-white px-5 text-sm md:px-8 xl:px-10 py-4 md:py-2 lg:py-4 hover:bg-gray-900 rounded-full">
+              <div className="grid grid-cols-2 md:flex gap-2 xl:gap-4 py-5 max-w-sm md:justify-center">
+                <button className="order-1 font-inter md:order-2 bg-brown md:text-base lg:text-xl font-semibold text-white px-5 text-sm md:px-4 py-4 md:py-2 lg:py-2 hover:bg-gray-900 rounded-full">
                   Share
                 </button>
-                <button className="order-2 font-inter md:order-1 col-span-2 bg-lightGreen md:text-base lg:text-xl font-semibold text-gray-700 px-5 text-sm md:px-8 xl:px-10 py-4 lg:py-4 md:py-2 hover:bg-teal-300 rounded-full">
+                {/* <button className="order-2 font-inter md:order-1 col-span-2 bg-lightGreen md:text-base lg:text-lg font-semibold text-gray-700 px-5 text-sm md:px-4 py-4 lg:py-2 md:py-2 hover:bg-teal-300 rounded-full">
                   Create Again
-                </button>
-                <button className="bg-brown font-inter md:text-base lg:text-xl font-semibold text-white px-5 text-sm md:px-8 xl:px-10 md:py-2 py-4 lg:py-4  hover:bg-gray-900 rounded-full">
+                </button> */}
+                <button className="bg-brown font-inter md:text-base lg:text-lg font-semibold text-white px-5 text-sm md:px-4 md:py-2 py-4 lg:py-2  hover:bg-gray-900 rounded-full">
                   Save
                 </button>
               </div>
