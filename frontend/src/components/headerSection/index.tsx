@@ -1,7 +1,9 @@
+"use client";
 import Image from "next/image";
 import NavBar from "../navbar";
 import PromptCreater from "../promptCreater";
 import HeroImagesSlider from "../heroImagesSlider";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 export default function HeaderSection() {
   return (
@@ -25,9 +27,18 @@ export default function HeaderSection() {
                 reiciendis amet,s eum?
               </p>
               <div className="">
-                <button className="bg-lightGreen text-black font-semibold rounded-xl text-lg font-inter p-2  md:p-4">
+                {/* <button className="bg-lightGreen text-black font-semibold rounded-xl text-lg font-inter p-2  md:p-4">
                   Generate Now
-                </button>
+                </button> */}
+                <ScrollLink
+                  to="generateNow" // This should match the ID of the element you want to scroll to
+                  smooth={true}
+                  duration={600}
+                  offset={-20} // Adjust this offset based on your layout
+                  className="bg-lightGreen text-black font-semibold rounded-xl text-lg font-inter p-2 cursor-pointer  md:p-4"
+                >
+                  Generate Now
+                </ScrollLink>
               </div>
             </div>
           </div>

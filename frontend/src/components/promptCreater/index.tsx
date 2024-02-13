@@ -8,6 +8,7 @@ export default function PromptCreater() {
   const setImageFetch = generatedImage.promptImageHandler;
   const setLoader = generatedImage.setDefaultLoader;
   const setPrevImage = generatedImage.prevImageHandler;
+  const imageType = generatedImage.imageType;
   const [imgData, setImgData] = useState("");
   const promptRef = useRef<any>();
   // const [imageFetch, setImageFetch] = useState<any>();
@@ -65,7 +66,7 @@ export default function PromptCreater() {
     // const randomString = Math.random().toString(36).substring(7);
     const randomString = Math.random().toFixed(7);
     console.log("randomString--->", randomString);
-    const augmentedInputValue = `${prompt} ${randomString}`;
+    const augmentedInputValue = `${imageType} ${prompt} ${randomString}`;
     try {
       const response = await fetch("/api/prompt-to-img", {
         method: "POST",

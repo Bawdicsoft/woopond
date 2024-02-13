@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useImageContext } from "../contextApi/imageContext";
 import PromptCreater from "../promptCreater";
+import { PiDownloadSimpleLight } from "react-icons/pi";
+import { IoMdShareAlt } from "react-icons/io";
 
 export default function HeroSection() {
   const generatedImage = useImageContext();
@@ -11,8 +13,9 @@ export default function HeroSection() {
   const loader = defaultLoader.defaultLoader;
   const prevImage = generatedImage.prevImage;
   const imageFetch = generatedImage.image;
+  const setImageType = generatedImage.imageTypeHandler;
   const [progress, setProgress] = useState(0);
-  // const [imageData, setImageData] = useState("");
+  const [border, setBorder] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -41,9 +44,9 @@ export default function HeroSection() {
       <div className="border-4 border-white rounded-[62px]">
         <div className="py-4 md:py-8 max-w-screen-xl px-2 md:px-2 lg:px-10  mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 xl:gap-10">
-            <div className="">
+            <div className="" id="generateNow">
               <PromptCreater />
-              <div className="flex gap-5 xl:gap-10 max-w-lg pb-5 items-end md:pl-14 pt-5">
+              <div className="flex gap-5 xl:gap-10 max-w-lg pb-5 items-end pl-2 md:pl-5 lg:pl-14 pt-5">
                 <h2 className="text-xl font-inika md:text-3xl xl:text-3xl font-semibold text-black">
                   Choose Style
                 </h2>
@@ -53,13 +56,20 @@ export default function HeroSection() {
                   <Link href={"#"}>Top</Link>
                 </div>
               </div>
-              <div className="grid grid-cols-4 md:grid-cols-2 gap-2 md:gap-4">
+              <div className="grid grid-cols-4 md:grid-cols-2 gap-2 md:gap-2 lg:gap-4">
                 {chooseImagList.map((data, index) => (
                   <div
                     key={index}
-                    className="flex flex-col justify-center items-center gap-2"
+                    className="flex flex-col justify-center items-center gap-1 lg:gap-2"
                   >
-                    <div className="w-16 h-16 md:w-28 md:h-28 lg:w-40 lg:h-40 xl:w-28 xl:h-28 rounded-3xl">
+                    <div
+                      onClick={() => {
+                        setImageType(data.title), setBorder(index);
+                      }}
+                      className={`w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-28 xl:h-28 rounded-3xl ${
+                        border === index ? "border-4 border-white" : ""
+                      }`}
+                    >
                       <Image
                         src={data.img}
                         alt="images"
@@ -75,9 +85,9 @@ export default function HeroSection() {
                 ))}
               </div>
             </div>
-            <div className="h-full w-full pt-20">
+            <div className="h-full w-full pl-4 md:pt-16 lg:pt-10 md:pl-5 xl:pl-16">
               <div
-                className="h-[450px] md:h-[470px] lg:h-[510px] w-[400px] relative z-50 rounded-3xl"
+                className="h-[350px] w-[270px] md:h-[400px] lg:h-[510px] md:w-[320px] lg:w-[400px] relative z-50 rounded-3xl"
                 style={{
                   border: `4px solid #fff`,
                   transition: "border-width 2s ease-in-out",
@@ -143,14 +153,16 @@ export default function HeroSection() {
                 )}
               </div>
               <div className="grid grid-cols-2 md:flex gap-2 xl:gap-4 py-5 max-w-sm md:justify-center">
-                <button className="order-1 font-inter md:order-2 bg-brown md:text-base lg:text-xl font-semibold text-white px-5 text-sm md:px-4 py-4 md:py-2 lg:py-2 hover:bg-gray-900 rounded-full">
-                  Share
+                <button className="flex gap-2 justify-center items-center md:text-base lg:text-lg order-1 font-inter md:order-2 bg-lightGreen font-semibold text-black px-3 text-sm md:px-8 lg:px-12 py-4 md:py-4 lg:py-3 hover:bg-gray-900 rounded-full">
+                  <span>Share</span>{" "}
+                  <IoMdShareAlt className="w-6 h-6 text-black font-bold" />
                 </button>
-                {/* <button className="order-2 font-inter md:order-1 col-span-2 bg-lightGreen md:text-base lg:text-lg font-semibold text-gray-700 px-5 text-sm md:px-4 py-4 lg:py-2 md:py-2 hover:bg-teal-300 rounded-full">
+                {/* <button className="order-2 font-inter md:order-1 col-span-2 bg-lightGreen md:text-base lg:text-lg font-semibold text-gray-700 px-5 text-sm md:px-8 py-4 lg:py-4 md:py-4 hover:bg-teal-300 rounded-full">
                   Create Again
                 </button> */}
-                <button className="bg-brown font-inter md:text-base lg:text-lg font-semibold text-white px-5 text-sm md:px-4 md:py-2 py-4 lg:py-2  hover:bg-gray-900 rounded-full">
-                  Save
+                <button className="flex gap-2 justify-center items-center bg-lightGreen font-inter md:text-base lg:text-lg font-semibold text-black px-3 text-sm md:px-8 md:py-4 lg:px-12 py-4 lg:py-3  hover:bg-gray-900 rounded-full">
+                  <span>Save </span>{" "}
+                  <PiDownloadSimpleLight className="w-6 h-6 text-black font-bold" />
                 </button>
               </div>
             </div>

@@ -61,7 +61,10 @@ export default function NavBar() {
             <li>
               <Link
                 href="#"
-                className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:p-0 md:hover:text-blue-700"
+                className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:p-0 md:hover:text-blue-700 relative before:content-[''] before:absolute before:block before:w-full before:h-[2px] 
+              before:bottom-0 before:left-0 before:bg-lightGreen
+              before:hover:scale-x-100 before:scale-x-0 before:origin-top-left
+              before:transition before:ease-in-out before:duration-700 hover:text-lightGreen focus:text-lightGreen"
                 aria-current="page"
               >
                 Home
@@ -70,7 +73,10 @@ export default function NavBar() {
             <li>
               <Link
                 href="/"
-                className="block py-2 px-3 rounded  md:border-0 md:hover:text-blue-700 md:p-0 text-white"
+                className="block py-2 px-3 rounded  md:border-0 md:hover:text-blue-700 md:p-0 text-white relative before:content-[''] before:absolute before:block before:w-full before:h-[2px] 
+              before:bottom-0 before:left-0 before:bg-lightGreen
+              before:hover:scale-x-100 before:scale-x-0 before:origin-top-left
+              before:transition before:ease-in-out before:duration-700 hover:text-lightGreen focus:text-lightGreen"
               >
                 Text to image
               </Link>
@@ -78,7 +84,10 @@ export default function NavBar() {
             <li>
               <Link
                 href="/text-to-video"
-                className="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 text-white"
+                className="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 text-white relative before:content-[''] before:absolute before:block before:w-full before:h-[2px] 
+              before:bottom-0 before:left-0 before:bg-lightGreen
+              before:hover:scale-x-100 before:scale-x-0 before:origin-top-left
+              before:transition before:ease-in-out before:duration-700 hover:text-lightGreen focus:text-lightGreen"
               >
                 Text to video
               </Link>
@@ -101,14 +110,24 @@ export default function NavBar() {
             </li> */}
           </ul>
         </div>
-        <button>
-          <Link
-            href="#"
-            className="hidden md:inline bg-lightGreen hover:bg-teal-300 font-semibold lg:font-bold lg:text-xl py-2 px-4 md:border-0 md:py-4 md:px-6 lg:px-5  xl:px-6 lg:py-4 rounded-full text-gray-800"
-          >
-            Sign Up
-          </Link>
-        </button>
+        <div className="flex gap-2">
+          <button>
+            <Link
+              href="#"
+              className="hidden md:inline bg-lightGreen hover:bg-teal-300 font-semibold lg:font-bold lg:text-xl py-2 px-4 md:border-0 md:py-4 md:px-6 lg:px-5  xl:px-6 lg:py-4 rounded-full text-gray-800"
+            >
+              Sign Up
+            </Link>
+          </button>
+          <button>
+            <Link
+              href="#"
+              className="hidden md:inline outline-none  border-2 text-lightGreen border-lightGreen hover:bg-teal-300 font-semibold lg:font-bold lg:text-xl py-2 px-4 md:py-4 md:px-6 lg:px-5  xl:px-6 lg:py-4 rounded-full text-gray-800"
+            >
+              Log In
+            </Link>
+          </button>
+        </div>
       </div>
       {/* toggle */}
       {toggle && (
