@@ -75,8 +75,7 @@ export default function PromptCreater() {
         body: JSON.stringify({
           input: augmentedInputValue,
           modelUrl:
-            "https://api-inference.huggingface.co/models/ehristoforu/dalle-3-xl",
-          // "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5",
+            "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5",
         }),
       });
       if (!response.ok) {
