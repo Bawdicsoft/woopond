@@ -1,7 +1,7 @@
 "use client";
 import { useImageContext } from "@/components/contextApi/imageContext";
-
-import SignIn from "@/components/signIn";
+import SignIn from "./signIn";
+import SignUp from "./signUp";
 
 export default function Register() {
   const authModal = useImageContext();
@@ -13,7 +13,7 @@ export default function Register() {
       {!user ? (
         <div className="">
           {modal ? (
-            <div>{switChModal == "signin" ? <SignIn /> : null}</div>
+            <div>{switChModal == "signin" ? <SignIn /> : <SignUp />}</div>
           ) : null}
         </div>
       ) : null}

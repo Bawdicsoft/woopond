@@ -6,7 +6,7 @@ import HeaderSection from "@/components/headerSection";
 import { ImageContext } from "@/components/contextApi/imageContext";
 import { useState } from "react";
 import ImageProvider from "@/components/contextApi/imageProvider";
-import Register from "@/components/register";
+import Register from "@/components/registeration";
 
 const inter = Inter({ subsets: ["latin"] });
 
