@@ -1,8 +1,13 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useImageContext } from "../contextApi/imageContext";
 
 export default function NavBar() {
+  const authModal = useImageContext();
+  const setModal = authModal.authModalHandler;
+  const setSwitchModal = authModal.switchModalHandler;
+
   const [toggle, setToggle] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const handleClickOutside = (event: MouseEvent) => {
@@ -21,6 +26,7 @@ export default function NavBar() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [toggle]);
+
   return (
     <nav className="border-gray-200 z-50 md:z-30 relative">
       <div className="flex md:flex-wrap items-end justify-between mx-auto md:px-4 lg:px-0 py-2 md:py-4">
@@ -111,7 +117,12 @@ export default function NavBar() {
           </ul>
         </div>
         <div className="flex gap-2">
-          <button>
+          <button
+            onClick={() => {
+              setSwitchModal("signup");
+              setModal(true);
+            }}
+          >
             <Link
               href="#"
               className="hidden md:inline bg-lightGreen hover:bg-teal-300 font-semibold lg:font-bold lg:text-xl py-2 px-4 md:border-0 md:py-4 md:px-6 lg:px-5  xl:px-6 lg:py-4 rounded-full text-gray-800"
@@ -119,7 +130,12 @@ export default function NavBar() {
               Sign Up
             </Link>
           </button>
-          <button>
+          <button
+            onClick={() => {
+              setSwitchModal("signin");
+              setModal(true);
+            }}
+          >
             <Link
               href="#"
               className="hidden md:inline outline-none  border-2 text-lightGreen border-lightGreen hover:bg-teal-300 font-semibold lg:font-bold lg:text-xl py-2 px-4 md:py-4 md:px-6 lg:px-5  xl:px-6 lg:py-4 rounded-full text-gray-800"

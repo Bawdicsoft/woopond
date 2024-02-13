@@ -117,7 +117,7 @@ export default function PromptCreater() {
             type="search"
             ref={promptRef}
             id="default-search"
-            className="block outline-none w-full focus:ring-4 focus:ring-lightGreen rounded-full p-4 md:p-5 lg:p-5 ps-5 text-sm lg:text-xl text-gray-900 bg-white"
+            className="block outline-none w-full focus:ring-4 focus:ring-lightGreen rounded-full p-4 md:p-5 lg:p-5 pr-24 md:pr-28 lg:pr-36 xl:pr-40 ps-5 text-sm lg:text-xl text-gray-900 bg-white"
             placeholder="Create An Image..."
             required
           />

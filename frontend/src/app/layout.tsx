@@ -6,6 +6,7 @@ import HeaderSection from "@/components/headerSection";
 import { ImageContext } from "@/components/contextApi/imageContext";
 import { useState } from "react";
 import ImageProvider from "@/components/contextApi/imageProvider";
+import Register from "@/components/register";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ImageProvider>
           <HeaderSection />
+          <Register />
           {children}
           <Footer />
         </ImageProvider>
