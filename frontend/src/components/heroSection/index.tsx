@@ -9,6 +9,7 @@ export default function HeroSection() {
   const generatedImage = useImageContext();
   const defaultLoader = useImageContext();
   const loader = defaultLoader.defaultLoader;
+  const prevImage = generatedImage.prevImage;
   const imageFetch = generatedImage.image;
   const [progress, setProgress] = useState(0);
   // const [imageData, setImageData] = useState("");
@@ -94,21 +95,12 @@ export default function HeroSection() {
                       />
                     ) : (
                       <div
-                        className="h-full w-full flex rounded-3xl justify-center items-center relative"
+                        className="h-full w-full flex rounded-3xl justify-center items-center"
                         style={{
-                          backgroundImage:
-                            "url('/Assests/homeAssests/firstImage.jpg')",
+                          backgroundImage: `url(${prevImage})`,
                           backgroundRepeat: "no-repeat",
                           backgroundSize: "cover",
-                          position: "absolute",
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          zIndex: 10,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
+                          backgroundPosition: "center",
                         }}
                       >
                         <button
@@ -122,7 +114,7 @@ export default function HeroSection() {
                           <span className="absolute top-1/2 right-4 lg:right-8 translate-y-[-50%] dot delay-100"></span>
                         </button>
 
-                        <div
+                        {/* <div
                           style={{
                             position: "absolute",
                             // top: 0,
@@ -134,7 +126,7 @@ export default function HeroSection() {
                             height: `${progress}%`, // Adjust width based on the progress state
                             borderRadius: "inherit",
                           }}
-                        ></div>
+                        ></div> */}
                       </div>
                     )}
                   </>

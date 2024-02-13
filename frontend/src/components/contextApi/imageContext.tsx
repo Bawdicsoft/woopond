@@ -9,9 +9,10 @@ import {
 
 interface ImageContextProps {
   image: string; // Assuming image is a string, you can adjust the type accordingly
-  // prevImage: string; // Assuming image is a string, you can adjust the type accordingly
+  prevImage: string; // Assuming image is a string, you can adjust the type accordingly
   defaultLoader: Boolean;
   promptImageHandler: Dispatch<SetStateAction<string>>;
+  prevImageHandler: Dispatch<SetStateAction<string>>;
   setDefaultLoader: Dispatch<boolean>;
 }
 

@@ -5,56 +5,92 @@ import Image from "next/image";
 
 export default function PromptCreater() {
   const generatedImage = useImageContext();
-  // const setImageFetch = generatedImage.promptImageHandler;
+  const setImageFetch = generatedImage.promptImageHandler;
   const setLoader = generatedImage.setDefaultLoader;
+  const setPrevImage = generatedImage.prevImageHandler;
   const [imgData, setImgData] = useState("");
   const promptRef = useRef<any>();
-  const [imageFetch, setImageFetch] = useState<any>();
+  // const [imageFetch, setImageFetch] = useState<any>();
+
+  // const imageHandler = async (e: any) => {
+  //   setLoader(true);
+  //   setImageFetch("");
+  //   e.preventDefault();
+  //   const prompt = promptRef.current.value;
+  //   const randomString = Math.random().toFixed(7);
+  //   const augmentedInputValue = `${prompt} ${randomString}`;
+  //   const modelUrl =
+  //     "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5";
+  //   try {
+  //     const response: any = await Promise.race([
+  //       fetch("/api/prompt-to-img", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           input: augmentedInputValue,
+  //           modelUrl,
+  //         }),
+  //       }),
+  //       new Promise(
+  //         (_, reject) =>
+  //           setTimeout(() => reject(new Error("Request timeout")), 30000) // Set a timeout of 10 seconds
+  //       ),
+  //     ]);
+
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch image");
+  //     }
+
+  //     const data = await response.arrayBuffer();
+  //     const blob = new Blob([data], { type: "image/png" });
+
+  //     const imgUrl = URL.createObjectURL(blob);
+
+  //     setImageFetch(imgUrl);
+  //   } catch (err) {
+  //     console.log("Error:", err);
+  //     console.error("Error:", err);
+  //   } finally {
+  //     setLoader(false);
+  //   }
+  // };
 
   const imageHandler = async (e: any) => {
     setLoader(true);
     setImageFetch("");
     e.preventDefault();
     const prompt = promptRef.current.value;
+    // const randomString = Math.random().toString(36).substring(7);
     const randomString = Math.random().toFixed(7);
+    console.log("randomString--->", randomString);
     const augmentedInputValue = `${prompt} ${randomString}`;
-    const modelUrl =
-      "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5";
-    // "https://api-inference.huggingface.co/models/kuldeepsingh-in/kd-project-google-03";
-
     try {
-      const response: any = await Promise.race([
-        fetch("/api/prompt-to-img", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            input: augmentedInputValue,
-            modelUrl,
-          }),
+      const response = await fetch("/api/prompt-to-img", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          input: augmentedInputValue,
+          modelUrl:
+            "https://api-inference.huggingface.co/models/ehristoforu/dalle-3-xl",
+          // "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5",
         }),
-        new Promise(
-          (_, reject) =>
-            setTimeout(() => reject(new Error("Request timeout")), 30000) // Set a timeout of 10 seconds
-        ),
-      ]);
-
+      });
       if (!response.ok) {
         throw new Error("Failed to fetch image");
       }
-
+      console.log("response--->", response);
       const data = await response.arrayBuffer();
       const blob = new Blob([data], { type: "image/png" });
-
       const imgUrl = URL.createObjectURL(blob);
-
       setImageFetch(imgUrl);
+      setPrevImage(imgUrl);
+      console.log("imgUrl---->", imgUrl);
     } catch (err) {
-      console.log("Error:", err);
-      console.error("Error:", err);
-    } finally {
-      setLoader(false);
+      console.log("err---->", err);
     }
   };
 
@@ -91,7 +127,7 @@ export default function PromptCreater() {
           </button>
         </div>
       </form>
-      {imageFetch && (
+      {/* {imageFetch && (
         <Image
           src={imageFetch}
           alt="Generating image..."
@@ -99,7 +135,7 @@ export default function PromptCreater() {
           height={1200}
           className="w-full h-full rounded-3xl"
         />
-      )}
+      )} */}
     </div>
   );
 }
