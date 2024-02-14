@@ -55,7 +55,11 @@ const AuthForm: React.FC<AuthFormProps> = ({
   const provider = new GoogleAuthProvider();
   const signInWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, provider);
+      const { user } = await signInWithPopup(auth, provider);
+      console.log("user---->", user);
+      console.log("userName---->", user.displayName);
+      localStorage.setItem("user", JSON.stringify(user.displayName));
+      // console.log("provider---->", provider);
     } catch (error) {
       console.error("Sign-in error:", error);
     }

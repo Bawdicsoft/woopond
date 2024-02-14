@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ImageContext } from "./imageContext";
 
 export default function ImageProvider({ children }: { children: any }) {
