@@ -1,4 +1,5 @@
 "use client";
+// import { client, GenerationStyle, Status } from "imaginesdk";
 import { useContext, useRef, useState } from "react";
 import { useImageContext } from "../contextApi/imageContext";
 import Image from "next/image";
@@ -64,7 +65,6 @@ export default function PromptCreater() {
     setImageFetch("");
     e.preventDefault();
     const prompt = promptRef.current.value;
-    // const randomString = Math.random().toString(36).substring(7);
     const randomString = Math.random().toFixed(7);
     console.log("randomString--->", randomString);
     const augmentedInputValue = `${imageType} ${prompt} ${randomString}`;
@@ -95,6 +95,25 @@ export default function PromptCreater() {
       console.log("err---->", err);
     }
   };
+
+  // const imagine = client("vk-JjbUUcwVN4vxGOFZp4n3HFBmSgF2DQkxaZCUUTuv3urIAF");
+
+  // const main = async (e: any) => {
+  //   e.preventDefault();
+  //   const response = await imagine.generations(
+  //     `A vibrant and whimsical fantasy forest with magical creatures, glowing plants, and a flowing river, in a digital painting style inspired by video games like Ori and the Blind Forest.`,
+  //     {
+  //       style: GenerationStyle.IMAGINE_V5,
+  //     }
+  //   );
+  //   if (response.status() === Status.OK) {
+  //     const image = response.getOrThrow();
+  //     image.asFile("output.png");
+  //     console.log(image);
+  //   } else {
+  //     console.log(response.errorOrThrow());
+  //   }
+  // };
 
   return (
     <div className="max-w-xl md:max-w-md lg:max-w-lg xl:max-w-xl md:pl-5 z-30 relative flex flex-col gap-3">
