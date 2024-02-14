@@ -9,6 +9,9 @@ import { auth } from "@/app/firebase";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useImageContext } from "../contextApi/imageContext";
+import { FcGoogle } from "react-icons/fc";
+import { FaApple } from "react-icons/fa6";
+import Link from "next/link";
 
 interface AuthFormProps {
   signUpHandler?: (
@@ -33,6 +36,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
   const conformPasswordRef = useRef<any>();
   const modalCheck = useImageContext();
   const setModalCheck = modalCheck.authModalHandler;
+  const setSwitchModal = modalCheck.switchModalHandler;
   const modal = modalCheck.authModal;
 
   const submitHandler = (e: any) => {
@@ -77,19 +81,19 @@ const AuthForm: React.FC<AuthFormProps> = ({
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div className="flex min-h-full  items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
-              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              enterFrom="opacity-0  sm:translate-y-0 sm:scale-95"
               enterTo="opacity-100 translate-y-0 sm:scale-100"
               leave="ease-in duration-200"
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                <div className="flex min-h-full flex-col justify-center px-6 py-5 lg:px-8 bg-lightGreen text-black">
-                  <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm border p-5 border-green rounded-xl bg-black">
+              <Dialog.Panel className="relative md:w-[400px] transform rounded-lg bg-lightGreen text-left shadow-xl transition-all sm:my-8 p-3">
+                <div className="flex w-full h-full flex-col justify-center bg-lightGreen text-black">
+                  <div className="sm:mx-auto sm:w-full sm:max-w-md border p-5 border-green rounded-xl bg-black">
                     <form onSubmit={submitHandler} className="space-y-6 ">
                       <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-white ">
                         {signUp
@@ -141,28 +145,43 @@ const AuthForm: React.FC<AuthFormProps> = ({
                       <button
                         onClick={signInWithGoogle}
                         type="submit"
-                        className="flex w-full justify-center  rounded-md px-3 border bg-lightGreen  py-1.5 text-sm font-semibold leading-6  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-green"
+                        className="flex gap-1  md:gap-2 w-full justify-center items-center rounded-md md:px-3 border bg-lightGreen  py-1.5 text-sm font-semibold leading-6  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-green"
                       >
-                        CONTINUE WITH GOOGLE
+                        <FcGoogle className="w-5 h-5 md:w-6 md:h-6" />{" "}
+                        <span className="">CONTINUE WITH GOOGLE</span>
                       </button>
 
                       <button
                         type="submit"
-                        className="flex w-full justify-center rounded-md border bg-lightGreen  px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-green"
+                        className="flex gap-1  md:gap-2 items-center w-full justify-center uppercase rounded-md border bg-lightGreen  md:px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-green"
                       >
-                        CONTINUE WITH FACEBOOK
+                        <FaApple className="-ml-2 w-5 h-5 md:w-6 md:h-6 text-gray-700" />{" "}
+                        <span className="">CONTINUE WITH APPLE</span>
                       </button>
                     </form>
-
-                    <p className="mt-10 text-center text-sm text-white">
-                      Already a Wooponder?
-                      <a
-                        href="#"
-                        className="font-semibold leading-6  hover:text-indigo-500 underline"
-                      >
-                        LOGIN
-                      </a>
-                    </p>
+                    {!signUp ? (
+                      <p className="mt-10 text-center text-sm text-white">
+                        Don&#39;t have an Account?
+                        <Link
+                          onClick={() => setSwitchModal("signup")}
+                          href="#"
+                          className="uppercase font-semibold leading-6  hover:text-lightGreen underline"
+                        >
+                          Signup
+                        </Link>
+                      </p>
+                    ) : (
+                      <p className="mt-10 text-center text-sm text-white">
+                        Already have an Account?
+                        <Link
+                          onClick={() => setSwitchModal("signin")}
+                          href="#"
+                          className="font-semibold leading-6  hover:text-lightGreen underline"
+                        >
+                          LOGIN
+                        </Link>
+                      </p>
+                    )}
                   </div>
                 </div>
               </Dialog.Panel>
