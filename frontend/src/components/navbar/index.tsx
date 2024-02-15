@@ -33,7 +33,7 @@ export default function NavBar() {
         <Link href="/" className="flex items-center">
           <img
             src="/Assests/homeAssests/image.png"
-            className="h-10 md:h-14 lg:h-16 px-2"
+            className="h-12 md:h-20 lg:h-20 px-2"
             alt="WooPond Logo"
           />
           {/* <span className="text-xl md:text-2xl lg:text-2xl -ml-2 font-bold font-inika text-primary">

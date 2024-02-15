@@ -29,7 +29,7 @@ const VideoGeneratedSection = () => {
         
       {/* </div> */}
       <div className="relative">
-      <div className="absolute z-10 md:left-8 lg:left-14 xl:left-20 top-[90px] w-10 h-10  md:w-14 md:h-14 opacity-20">
+      <div className="absolute z-10 md:left-8 lg:left-14 xl:left-20 top-[30px] w-10 h-10  md:w-14 md:h-14 opacity-20">
           <Image
             src={"/Assests/homeAssests/bgHeader.png"}
             alt="bgimage"
@@ -38,7 +38,7 @@ const VideoGeneratedSection = () => {
             className="w-full h-full"
           />
         </div>
-        <div className="absolute z-10 left-16 md:left-32 lg:left-48 xl:left-60 top-[90px] w-16 h-16 md:w-24 md:h-24 opacity-20">
+        <div className="absolute z-10 left-16 md:left-32 lg:left-48 xl:left-60 top-[40px] w-16 h-16 md:w-24 md:h-24 opacity-20">
           <Image
             src={"/Assests/homeAssests/bgHeader.png"}
             alt="bgimage"
@@ -47,7 +47,7 @@ const VideoGeneratedSection = () => {
             className="w-full h-full"
           />
         </div>
-        <div className="absolute z-10 left-36 top-20 md:left-60 lg:left-[350px]  xl:left-[430px] lg:top-[95px] w-24 h-24 md:w-40 md:h-40 opacity-20">
+        <div className="absolute z-10 left-36 top-20 md:left-60 lg:left-[350px]  xl:left-[430px] lg:top-[65px] w-24 h-24 md:w-40 md:h-40 opacity-20">
           <Image
             src={"/Assests/homeAssests/bgHeader.png"}
             alt="bgimage"
@@ -56,7 +56,7 @@ const VideoGeneratedSection = () => {
             className="w-full h-full"
           />
         </div>
-        <div className="absolute z-10 right-0 xl:right-48 top-[150px] md:top-[90px] md:w-[300px] w-[150px] h-[150px] md:h-[300px] opacity-20">
+        <div className="absolute z-10 right-0 xl:right-56 top-[150px] md:top-[70px] md:w-[300px] w-[150px] h-[150px] md:h-[300px] opacity-20">
           <Image
             src={"/Assests/homeAssests/bgHeader.png"}
             alt="bgimage"
