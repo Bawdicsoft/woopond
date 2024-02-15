@@ -24,8 +24,50 @@ const VideoGeneratedSection = () => {
   }, []);
 
   return (
-    <section className="bg-lightGray">
-      <div className="relative z-30 max-w-screen-xl mx-auto text-center px-4 lg:px-10 xl:px-14">
+    <section className="bg-black text-lightGreen text-center">
+      {/* <div className=""> */}
+        
+      {/* </div> */}
+      <div className="relative">
+      <div className="absolute z-10 md:left-8 lg:left-14 xl:left-20 top-[90px] w-10 h-10  md:w-14 md:h-14 opacity-20">
+          <Image
+            src={"/Assests/homeAssests/bgHeader.png"}
+            alt="bgimage"
+            width={500}
+            height={500}
+            className="w-full h-full"
+          />
+        </div>
+        <div className="absolute z-10 left-16 md:left-32 lg:left-48 xl:left-60 top-[90px] w-16 h-16 md:w-24 md:h-24 opacity-20">
+          <Image
+            src={"/Assests/homeAssests/bgHeader.png"}
+            alt="bgimage"
+            width={500}
+            height={500}
+            className="w-full h-full"
+          />
+        </div>
+        <div className="absolute z-10 left-36 top-20 md:left-60 lg:left-[350px]  xl:left-[430px] lg:top-[95px] w-24 h-24 md:w-40 md:h-40 opacity-20">
+          <Image
+            src={"/Assests/homeAssests/bgHeader.png"}
+            alt="bgimage"
+            width={500}
+            height={500}
+            className="w-full h-full"
+          />
+        </div>
+        <div className="absolute z-10 right-0 xl:right-48 top-[150px] md:top-[90px] md:w-[300px] w-[150px] h-[150px] md:h-[300px] opacity-20">
+          <Image
+            src={"/Assests/homeAssests/bgHeader.png"}
+            alt="bgimage"
+            width={500}
+            height={500}
+            className="w-full h-full"
+          />
+        </div>
+        <h1 className="md:text-7xl text-4xl font-bold h-96 pt-36 z-30 relative ">Coming Soon...</h1>
+      </div>
+      {/* <div className="relative z-30 max-w-screen-xl mx-auto text-center px-4 lg:px-10 xl:px-14">
         <div className="flex gap-4 justify-start items-center max-w-5xl py-5 md:py-8">
           <h2 className="text-xl md:text-3xl font-semibold font-inika">
             Choose Style
@@ -125,21 +167,26 @@ const VideoGeneratedSection = () => {
             Save
           </button>
         </div>
-        {/* 
- <div>
-      <li className="bg-[#CEFAE5]">Top</li>
-      <li className="bg-[#514A4A]">Top</li>
-      <li className="bg-[#FFFFFF]">Top</li>
-      <li className="bg-[#000000]">Top</li>
-      <li className="bg-[#DCD8F8]">Top</li>
-      <li className="bg-[#076857]">Top</li>
-      <li className="bg-[#B8EEEB]">Top</li>
-      <li className="bg-[#0B1618]">Top</li>
-      </div>
-      */}
-      </div>
+
+
+        
+      </div> */}
     </section>
   );
 };
 
 export default VideoGeneratedSection;
+
+{
+  /* <div>
+<li className="bg-[#CEFAE5]">Top</li>
+<li className="bg-[#514A4A]">Top</li>
+<li className="bg-[#FFFFFF]">Top</li>
+<li className="bg-[#000000]">Top</li>
+<li className="bg-[#DCD8F8]">Top</li>
+<li className="bg-[#076857]">Top</li>
+<li className="bg-[#B8EEEB]">Top</li>
+<li className="bg-[#0B1618]">Top</li>
+</div>
+*/
+}

@@ -7,6 +7,7 @@ import { ImageContext } from "@/components/contextApi/imageContext";
 import { useState } from "react";
 import ImageProvider from "@/components/contextApi/imageProvider";
 import Register from "@/components/registeration";
+import NavBar from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ImageProvider>
-          <HeaderSection />
+       <div className="bg-black"><NavBar />
+        </div> 
+
+          {/* <HeaderSection /> */}
           <Register />
           {children}
           <Footer />

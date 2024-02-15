@@ -7,6 +7,7 @@ import PromptCreater from "../promptCreater";
 import { PiDownloadSimpleLight } from "react-icons/pi";
 import { IoMdShareAlt } from "react-icons/io";
 import { BiSolidDownload } from "react-icons/bi";
+import HeaderSection from "../headerSection";
 
 export default function HeroSection() {
   const generatedImage = useImageContext();
@@ -70,6 +71,8 @@ export default function HeroSection() {
   };
 
   return (
+    <>
+    <HeaderSection /> 
     <div
       className="bg-lightGray max-h-max md:px-2 lg:px-10 xl:px-20 py-8"
       // style={{
@@ -103,8 +106,7 @@ export default function HeroSection() {
                       }}
                       className={`w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-28 xl:h-28 rounded-3xl ${
                         border === index ? "border-4 border-white" : ""
-                      }`}
-                    >
+                      }`}>
                       <Image
                         src={data.img}
                         alt="images"
@@ -208,5 +210,6 @@ export default function HeroSection() {
         </div>
       </div>
     </div>
+    </>
   );
 }

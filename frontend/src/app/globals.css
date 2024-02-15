@@ -8,40 +8,50 @@
   --text-inter: "Inter", sans-serif;
   --text-inika: "Inika", serif;
 }
+
 @keyframes bounce1 {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-0.5rem);
   }
 }
 
 @keyframes bounce2 {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-0.5rem);
   }
 }
 
 @keyframes bounce3 {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-0.5rem);
   }
 }
+
 @keyframes bounce4 {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-0.5rem);
   }
@@ -55,6 +65,31 @@
   position: absolute;
   animation-duration: 1s;
   animation-iteration-count: infinite;
+}
+
+#typed-output {
+  color: #fff;
+  text-align: justify;
+  height: 125px;
+  font-size: large !important;
+
+}
+
+/* Media query for tablets */
+@media screen and (max-width: 768px) {
+  #typed-output {
+    height: 90px;
+    font-size: small !important;
+  }
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 480px) {
+  #typed-output {
+    height: 60px;
+    font-size: x-small !important;
+
+  }
 }
 
 /* .dot:nth-child(1) {
@@ -79,6 +114,7 @@
 .dot:nth-child(3) {
   animation-name: bounce3;
 }
+
 .dot:nth-child(4) {
   animation-name: bounce4;
 }
