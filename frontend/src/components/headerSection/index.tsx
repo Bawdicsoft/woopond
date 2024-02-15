@@ -14,7 +14,7 @@ export default function HeaderSection() {""
       <section className="relative  h-[800px] md:h-[600px] lg:h-[700px]  max-w-6xl mx-auto px-5 xl:px-0 ">
         {/* <NavBar /> */}
         {/* <PromptCreater /> */}
-        <div className="relative z-30 gap-8 md:pt-20  grid grid-cols-1 md:grid-cols-3 h-[580px] ">
+        <div className="relative z-20 gap-8 md:pt-20  grid grid-cols-1 md:grid-cols-3 h-[580px] ">
           <div className="md:col-span-2 ">
            
             <div className="max-w-2xl pt-4 md:pt-5  lg:pt-4 flex flex-col gap-4 md:gap-4 ">

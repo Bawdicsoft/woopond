@@ -2,7 +2,13 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useImageContext } from "../contextApi/imageContext";
+import { Menu } from "@headlessui/react";
+import { Transition } from "@headlessui/react";
 
+import { Fragment } from "react";
+function classNames(...classes: any) {
+  return classes.filter(Boolean).join(" ");
+}
 export default function NavBar() {
   const authModal = useImageContext();
   const setModal = authModal.authModalHandler;
@@ -42,8 +48,9 @@ export default function NavBar() {
         </Link>
         <button
           type="button"
-          className="ml-24 inline-flex items-center p-2  justify-center text-sm text-lightGray rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-lightGreen"
-          onClick={() => setToggle(!toggle)}>
+          className="ml-24 inline-flex items-center order-2 p-2  justify-center text-sm text-lightGray rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-lightGreen"
+          onClick={() => setToggle(!toggle)}
+        >
           <span className="sr-only">Open main menu</span>
           <svg
             className="w-5 h-5"
@@ -70,7 +77,8 @@ export default function NavBar() {
               before:bottom-0 before:left-0 before:bg-lightGreen
               before:hover:scale-x-100 before:scale-x-0 before:origin-top-left
               before:transition before:ease-in-out before:duration-700 hover:text-lightGreen focus:text-lightGreen"
-                aria-current="page">
+                aria-current="page"
+              >
                 Home
               </Link>
             </li>
@@ -114,7 +122,7 @@ export default function NavBar() {
             </li> */}
           </ul>
         </div>
-        <div className="flex gap-2">
+        {/* <div className="flex gap-2">
           <button
             onClick={() => {
               setSwitchModal("signup");
@@ -141,46 +149,109 @@ export default function NavBar() {
               Log In
             </Link>
           </button>
-        </div>
-      </div>
-      {/* toggle */}
-      {toggle && (
-        <div
-          ref={dropdownRef}
-          className="absolute top-16 z-30 rounded w-full border border-lightGreen"
-        >
-          <div className="w-full">
-            <ul className="flex flex-col p-2 mt-4 font-medium border border-green-200 rounded-lg bg-black">
-              <li>
-                <Link
-                  onClick={() => setToggle(!toggle)}
-                  href="/"
-                  className="block py-2 px-3 text-white font-semibold "
-                  aria-current="page"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  onClick={() => setToggle(!toggle)}
-                  href="/"
-                  className="block py-2 px-3 text-white font-semibold "
-                  aria-current="page"
-                >
-                  Text to image
-                </Link>
-              </li>
-              <li>
-                <Link
-                  onClick={() => setToggle(!toggle)}
-                  href="/text-to-video"
-                  className="block py-2 px-3 text-white font-semibold "
-                >
-                  Text to video
-                </Link>
-              </li>
-              {/* <li>
+        </div> */}
+        {/* toggle */}
+        <Menu as="div" className="relative ml-3 hidden md:block">
+          <div>
+            <Menu.Button className="  relative flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+              <span className="absolute -inset-1.5" />
+              <span className="sr-only">Open user menu</span>
+              <img
+                className="h-8 w-8 rounded-full"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt=""
+              />
+            </Menu.Button>
+          </div>
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Menu.Items className=" bg-black text-white border border-lightGreen absolute right-0 z-50 mt-2 w-48 origin-top-right rounded-md  py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Menu.Item>
+                {({ active }) => (
+                  <a
+                    href="#"
+                    className={classNames(
+                      active ? "bg-gray-100" : "",
+                      "block px-4 py-2 text-sm "
+                    )}
+                  >
+                    Your Profile
+                  </a>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <a
+                    href="#"
+                    className={classNames(
+                      active ? "bg-gray-100" : "",
+                      "block px-4 py-2 text-sm "
+                    )}
+                  >
+                    Settings
+                  </a>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <a
+                    href="#"
+                    className={classNames(
+                      active ? "bg-gray-100" : "",
+                      "block px-4 py-2 text-sm "
+                    )}
+                  >
+                    Sign out
+                  </a>
+                )}
+              </Menu.Item>
+            </Menu.Items>
+          </Transition>
+        </Menu>
+        {toggle && (
+          <div
+            ref={dropdownRef}
+            className="absolute top-16 z-30 rounded w-full border border-lightGreen"
+          >
+            <div className="w-full">
+              <ul className="flex flex-col p-2 mt-4 font-medium border border-green-200 rounded-lg bg-black">
+                <li>
+                  <Link
+                    onClick={() => setToggle(!toggle)}
+                    href="/"
+                    className="block py-2 px-3 text-white font-semibold "
+                    aria-current="page"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={() => setToggle(!toggle)}
+                    href="/"
+                    className="block py-2 px-3 text-white font-semibold "
+                    aria-current="page"
+                  >
+                    Text to image
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={() => setToggle(!toggle)}
+                    href="/text-to-video"
+                    className="block py-2 px-3 text-white font-semibold "
+                  >
+                    Text to video
+                  </Link>
+                </li>
+                {/* <li>
                 <Link
                   onClick={() => setToggle(!toggle)}
                   href="/donation"
@@ -198,11 +269,12 @@ export default function NavBar() {
                   Bookmarks
                 </Link>
               </li> */}
-              <hr className="my-4 h-[2px] border-t-0 bg-transparent bg-gradient-to-r from-transparent via-green-200 to-transparent opacity-25" />
-            </ul>
+                <hr className="my-4 h-[2px] border-t-0 bg-transparent bg-gradient-to-r from-transparent via-green-200 to-transparent opacity-25" />
+              </ul>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </nav>
   );
 }
