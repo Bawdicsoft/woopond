@@ -2,8 +2,14 @@
 import AuthForm from "../authForm";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/app/firebase";
+import { useImageContext } from "../contextApi/imageContext";
 
 export default function SignUp() {
+  const modalCheck = useImageContext();
+  const setModalCheck = modalCheck.authModalHandler;
+  const fetcUser = useImageContext();
+  const setUserImage = fetcUser.userImageHandler;
+
   const signUpHandler = (
     email: string,
     password: string,
@@ -14,6 +20,12 @@ export default function SignUp() {
         .then((userCredential) => {
           const user = userCredential.user;
           console.log("user ---->", user);
+          if (user) {
+            setModalCheck(false);
+            setUserImage(
+              user?.photoURL ?? user?.displayName?.slice(0, 1) ?? ""
+            );
+          }
         })
         .catch((error) => {
           const errorCode = error.code;

@@ -6,9 +6,10 @@ import HeroImagesSlider from "../heroImagesSlider";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import TypedText from "./animationText";
 
-
-export default function HeaderSection() {""
-  const animatedText="I am WooPond, your creative companion in crafting digital masterpieces. Together, we shall embark on a journey to bring your imaginative visions to life, weaving artistry into the fabric of the digital landscape. As your AI ally, I stand ready to assist you in unleashing the full spectrum of your creativity, transforming ordinary ideas into extraordinary works of art. Let the collaboration commence and let the digital canvas become the playground where innovation and ingenuity dance hand in hand!"
+export default function HeaderSection() {
+  ("");
+  const animatedText =
+    "I am WooPond, your creative companion in crafting digital masterpieces. Together, we shall embark on a journey to bring your imaginative visions to life, weaving artistry into the fabric of the digital landscape. As your AI ally, I stand ready to assist you in unleashing the full spectrum of your creativity, transforming ordinary ideas into extraordinary works of art. Let the collaboration commence and let the digital canvas become the playground where innovation and ingenuity dance hand in hand!";
   return (
     <div className="bg-black text-start">
       <section className="relative  h-[800px] md:h-[600px] lg:h-[700px]  max-w-6xl mx-auto px-5 xl:px-0 ">
@@ -16,18 +17,17 @@ export default function HeaderSection() {""
         {/* <PromptCreater /> */}
         <div className="relative z-20 gap-8 md:pt-20  grid grid-cols-1 md:grid-cols-3 h-[580px] ">
           <div className="md:col-span-2 ">
-           
             <div className="max-w-2xl pt-4 md:pt-5  lg:pt-4 flex flex-col gap-4 md:gap-4 ">
-            <span id="typed-output"></span>
+              <span id="typed-output"></span>
               <div className="">
-              <TypedText text={animatedText} />
+                <TypedText text={animatedText} />
               </div>
-            <h2 className=" font-inika text-xl md:text-3xl lg:text-[38px] xl:text-[42px] pt-2 xl:pt-5 font-bold text-primary">
-              Hello da Vinci,
-            </h2>
+              <h2 className=" font-inika text-xl md:text-3xl lg:text-[38px] xl:text-[42px] pt-2 xl:pt-5 font-bold text-primary">
+                Hello da Vinci,
+              </h2>
               <h2 className=" font-inika text-xl md:text-3xl lg:text-[38px] xl:text-[42px] pb-2  font-bold text-primary">
-              Start Creating Now!
-            </h2> 
+                Start Creating Now!
+              </h2>
               <div className="xl:mt-12 lg:mt-10">
                 {/* <button className="bg-lightGreen text-black font-semibold rounded-xl text-lg font-inter p-2  md:p-4">
                   Generate Now

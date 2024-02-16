@@ -1,5 +1,5 @@
 "use client";
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
@@ -17,6 +17,7 @@ interface AuthFormProps {
   signUpHandler?: (
     email: string,
     password: string,
+    
     conformPassword: string
   ) => void;
   signInHandler?: (email: string, password: string) => void;
@@ -35,9 +36,15 @@ const AuthForm: React.FC<AuthFormProps> = ({
   const passwordRef = useRef<any>();
   const conformPasswordRef = useRef<any>();
   const modalCheck = useImageContext();
+  const FethUserImage = useImageContext();
+  const setUserImage = FethUserImage.userImageHandler;
   const setModalCheck = modalCheck.authModalHandler;
   const setSwitchModal = modalCheck.switchModalHandler;
   const modal = modalCheck.authModal;
+  // const [myModal, setMyModal] = useState(modal);
+  // useEffect(() => {
+  //   setModalCheck(modal);
+  // }, [myModal]);
 
   const submitHandler = (e: any) => {
     e.preventDefault();
@@ -58,6 +65,10 @@ const AuthForm: React.FC<AuthFormProps> = ({
       const { user } = await signInWithPopup(auth, provider);
       console.log("user---->", user);
       console.log("userName---->", user.displayName);
+       if(user){
+        setModalCheck(false);
+       }
+      setUserImage(user?.photoURL ?? user?.displayName?.slice(0,8) ?? "");
       localStorage.setItem("user", JSON.stringify(user.displayName));
       // console.log("provider---->", provider);
     } catch (error) {
@@ -144,12 +155,13 @@ const AuthForm: React.FC<AuthFormProps> = ({
                         type="submit"
                         className="flex w-full mx-auto justify-center rounded-3xl  bg-lightGreen px-3 py-1.5 text-sm font-semibold leading-6  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-green"
                       >
-                        {signUp ? " Sign up" : "Sing in"}
+                        {signUp ? " Sign up" : "Sign in"}
                       </button>
                       <button
                         onClick={signInWithGoogle}
                         type="submit"
                         className="flex gap-1  md:gap-2 w-full justify-center items-center rounded-md md:px-3 border bg-lightGreen  py-1.5 text-sm font-semibold leading-6  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-green"
+                        // onClick={() => setOpen(true)}
                       >
                         <FcGoogle className="w-5 h-5 md:w-6 md:h-6" />{" "}
                         <span className="">CONTINUE WITH GOOGLE</span>
@@ -158,6 +170,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
                       <button
                         type="submit"
                         className="flex gap-1  md:gap-2 items-center w-full justify-center uppercase rounded-md border bg-lightGreen  md:px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-green"
+                        // onClick={() => setOpen(true)}
                       >
                         <FaApple className="-ml-2 w-5 h-5 md:w-6 md:h-6 text-gray-700" />{" "}
                         <span className="">CONTINUE WITH APPLE</span>

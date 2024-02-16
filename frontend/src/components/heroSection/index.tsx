@@ -72,96 +72,97 @@ export default function HeroSection() {
 
   return (
     <>
-    <HeaderSection /> 
-    <div
-      className="bg-lightGray max-h-max md:px-2 lg:px-10 xl:px-20 py-8"
-      // style={{
-      //   height: "calc(100vh - 10px)",
-      // }}
-    >
-      <div className="border-4 border-white rounded-[62px]">
-        <div className="py-4 md:py-8 max-w-screen-xl px-2 md:px-2 lg:px-10  mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 xl:gap-10">
-            <div className="" id="generateNow">
-              <PromptCreater />
-              <div className="flex gap-5 xl:gap-10 max-w-lg pb-5 items-end pl-2 md:pl-5 lg:pl-14 pt-5">
-                <h2 className="text-xl font-inika md:text-3xl xl:text-3xl font-semibold text-black">
-                  Choose Style
-                </h2>
-                <div className="flex gap-2 xl:gap-5 font-normal text-gray-600 text-lg md:text-xl lg:text-2xl">
-                  <Link href={"#"}>New</Link>
-                  <Link href={"#"}>Hot</Link>
-                  <Link href={"#"}>Top</Link>
+      <HeaderSection />
+      <div
+        className="bg-lightGray max-h-max md:px-2 lg:px-10 xl:px-20 py-8"
+        // style={{
+        //   height: "calc(100vh - 10px)",
+        // }}
+      >
+        <div className="border-4 border-white rounded-[62px]">
+          <div className="py-4 md:py-8 max-w-screen-xl px-2 md:px-2 lg:px-10  mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 xl:gap-10">
+              <div className="" id="generateNow">
+                <PromptCreater />
+                <div className="flex gap-5 xl:gap-10 max-w-lg pb-5 items-end pl-2 md:pl-5 lg:pl-14 pt-5">
+                  <h2 className="text-xl font-inika md:text-3xl xl:text-3xl font-semibold text-black">
+                    Choose Style
+                  </h2>
+                  <div className="flex gap-2 xl:gap-5 font-normal text-gray-600 text-lg md:text-xl lg:text-2xl">
+                    <Link href={"#"}>New</Link>
+                    <Link href={"#"}>Hot</Link>
+                    <Link href={"#"}>Top</Link>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 md:grid-cols-2 gap-2 md:gap-2 lg:gap-4">
+                  {chooseImagList.map((data, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col justify-center items-center gap-1 lg:gap-2"
+                    >
+                      <div
+                        onClick={() => {
+                          setImageType(data.title), setBorder(index);
+                        }}
+                        className={`w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-28 xl:h-28 rounded-3xl ${
+                          border === index ? "border-4 border-white" : ""
+                        }`}
+                      >
+                        <Image
+                          src={data.img}
+                          alt="images"
+                          width={500}
+                          height={500}
+                          className="w-full h-full rounded-3xl"
+                        />
+                      </div>
+                      <h3 className="text-xs md:text-lg font-semibold font-inika">
+                        {data.title}
+                      </h3>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div className="grid grid-cols-4 md:grid-cols-2 gap-2 md:gap-2 lg:gap-4">
-                {chooseImagList.map((data, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-col justify-center items-center gap-1 lg:gap-2"
-                  >
-                    <div
-                      onClick={() => {
-                        setImageType(data.title), setBorder(index);
-                      }}
-                      className={`w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-28 xl:h-28 rounded-3xl ${
-                        border === index ? "border-4 border-white" : ""
-                      }`}>
-                      <Image
-                        src={data.img}
-                        alt="images"
-                        width={500}
-                        height={500}
-                        className="w-full h-full rounded-3xl"
-                      />
-                    </div>
-                    <h3 className="text-xs md:text-lg font-semibold font-inika">
-                      {data.title}
-                    </h3>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="h-full w-full pl-4 md:pt-16 lg:pt-10 md:pl-5 xl:pl-16">
-              <div
-                className="h-[350px] w-[270px] md:h-[400px] lg:h-[510px] md:w-[320px] lg:w-[400px] relative z-50 rounded-3xl"
-                style={{
-                  border: `4px solid #fff`,
-                  transition: "border-width 2s ease-in-out",
-                }}
-              >
-                {loader ? (
-                  <>
-                    {imageFetch ? (
-                      <Image
-                        src={imageFetch}
-                        alt="Generating image..."
-                        width={1000}
-                        height={1200}
-                        className="w-full h-full rounded-3xl"
-                      />
-                    ) : (
-                      <div
-                        className="h-full w-full flex rounded-3xl justify-center items-center"
-                        style={{
-                          backgroundImage: `url(${prevImage})`,
-                          backgroundRepeat: "no-repeat",
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                        }}
-                      >
-                        <button
-                          disabled
-                          type="button"
-                          className="text-black relative z-50 bg-lightGray hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm lg:text-lg px-5 py-2.5 lg:py-3 lg:pr-10 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
+              <div className="h-full w-full pl-4 md:pt-16 lg:pt-10 md:pl-5 xl:pl-16">
+                <div
+                  className="h-[350px] w-[270px] md:h-[400px] lg:h-[510px] md:w-[320px] lg:w-[400px] relative z-50 rounded-3xl"
+                  style={{
+                    border: `4px solid #fff`,
+                    transition: "border-width 2s ease-in-out",
+                  }}
+                >
+                  {loader ? (
+                    <>
+                      {imageFetch ? (
+                        <Image
+                          src={imageFetch}
+                          alt="Generating image..."
+                          width={1000}
+                          height={1200}
+                          className="w-full h-full rounded-3xl"
+                        />
+                      ) : (
+                        <div
+                          className="h-full w-full flex rounded-3xl justify-center items-center"
+                          style={{
+                            backgroundImage: `url(${prevImage})`,
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                          }}
                         >
-                          <span className="pr-6">Generating</span>
-                          <span className="absolute top-1/2 right-6 lg:right-10 translate-y-[-50%] dot delay-300"></span>
-                          <span className="absolute top-1/2 right-5 lg:right-9 translate-y-[-50%] dot delay-200"></span>
-                          <span className="absolute top-1/2 right-4 lg:right-8 translate-y-[-50%] dot delay-100"></span>
-                        </button>
+                          <button
+                            disabled
+                            type="button"
+                            className="text-black relative z-50 bg-lightGray hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm lg:text-lg px-5 py-2.5 lg:py-3 lg:pr-10 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
+                          >
+                            <span className="pr-6">Generating</span>
+                            <span className="absolute top-1/2 right-6 lg:right-10 translate-y-[-50%] dot delay-300"></span>
+                            <span className="absolute top-1/2 right-5 lg:right-9 translate-y-[-50%] dot delay-200"></span>
+                            <span className="absolute top-1/2 right-4 lg:right-8 translate-y-[-50%] dot delay-100"></span>
+                          </button>
 
-                        {/* <div
+                          {/* <div
                           style={{
                             position: "absolute",
                             // top: 0,
@@ -174,42 +175,42 @@ export default function HeroSection() {
                             borderRadius: "inherit",
                           }}
                         ></div> */}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <div className="w-full h-full">
-                    <Image
-                      src={"/Assests/homeAssests/firstImage.jpg"}
-                      alt="Generating image..."
-                      width={400}
-                      height={800}
-                      className="w-full h-full rounded-3xl"
-                    />
-                  </div>
-                )}
-              </div>
-              <div className="grid grid-cols-2 md:flex gap-2 xl:gap-4 py-5 max-w-sm md:justify-center">
-                <button className="flex gap-2 justify-center items-center md:text-base lg:text-lg order-1 font-inter md:order-2 bg-lightGreen font-semibold text-black px-3 text-sm md:px-8 lg:px-12 py-4 md:py-4 lg:py-3 hover:bg-gray-900 rounded-full">
-                  <span>Share</span>{" "}
-                  <IoMdShareAlt className="h-5 w-5 lg:w-6 lg:h-6 text-black font-bold" />
-                </button>
-                {/* <button className="order-2 font-inter md:order-1 col-span-2 bg-lightGreen md:text-base lg:text-lg font-semibold text-gray-700 px-5 text-sm md:px-8 py-4 lg:py-4 md:py-4 hover:bg-teal-300 rounded-full">
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="w-full h-full">
+                      <Image
+                        src={"/Assests/homeAssests/firstImage.jpg"}
+                        alt="Generating image..."
+                        width={400}
+                        height={800}
+                        className="w-full h-full rounded-3xl"
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="grid grid-cols-2 md:flex gap-2 xl:gap-4 py-5 max-w-sm md:justify-center">
+                  <button className="flex gap-2 justify-center items-center md:text-base lg:text-lg order-1 font-inter md:order-2 bg-lightGreen font-semibold text-black px-3 text-sm md:px-8 lg:px-12 py-4 md:py-4 lg:py-3 hover:bg-gray-900 rounded-full">
+                    <span>Share</span>{" "}
+                    <IoMdShareAlt className="h-5 w-5 lg:w-6 lg:h-6 text-black font-bold" />
+                  </button>
+                  {/* <button className="order-2 font-inter md:order-1 col-span-2 bg-lightGreen md:text-base lg:text-lg font-semibold text-gray-700 px-5 text-sm md:px-8 py-4 lg:py-4 md:py-4 hover:bg-teal-300 rounded-full">
                   Create Again
                 </button> */}
-                <button
-                  onClick={handleDownload}
-                  className="flex gap-2 justify-center items-center bg-lightGreen font-inter md:text-base lg:text-lg font-semibold text-black px-3 text-sm md:px-8 md:py-4 lg:px-12 py-4 lg:py-3  hover:bg-gray-900 rounded-full"
-                >
-                  <span>Save </span>{" "}
-                  <BiSolidDownload className="h-5 w-5 lg:w-6 lg:h-6 text-black font-bold" />
-                </button>
+                  <button
+                    onClick={handleDownload}
+                    className="flex gap-2 justify-center items-center bg-lightGreen font-inter md:text-base lg:text-lg font-semibold text-black px-3 text-sm md:px-8 md:py-4 lg:px-12 py-4 lg:py-3  hover:bg-gray-900 rounded-full"
+                  >
+                    <span>Save </span>{" "}
+                    <BiSolidDownload className="h-5 w-5 lg:w-6 lg:h-6 text-black font-bold" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 }

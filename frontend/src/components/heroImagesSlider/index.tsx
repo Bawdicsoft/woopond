@@ -1,11 +1,9 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/effect-cube";
 import "swiper/css/pagination";
-
 import "./style.css";
 
 import { EffectCube, Pagination, Autoplay } from "swiper/modules";

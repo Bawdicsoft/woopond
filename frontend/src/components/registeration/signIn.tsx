@@ -7,9 +7,11 @@ import { useImageContext } from "../contextApi/imageContext";
 
 export default function SignIn() {
   const fetchModal = useImageContext();
+  const fetcUser = useImageContext();
+  const setUserImage = fetcUser.userImageHandler;
+  const userImage = fetcUser.userImage;
   const setAuthModal = fetchModal.authModalHandler;
-  const setLoggedIn = fetchModal.LoggedInHandler;
-  const loggedIn = fetchModal.loggedIn;
+
   // const router = useRouter();
   const signInHandler = (email: string, password: string) => {
     signInWithEmailAndPassword(auth, email, password)
@@ -17,10 +19,16 @@ export default function SignIn() {
         const user = userCredential.user;
         if (user) {
           setAuthModal(false);
+          if (user.photoURL) {
+            setUserImage(user?.photoURL);
+          } else {
+            setUserImage(user.email?.slice(0,1) ?? "");
+          }
         } else {
           setAuthModal(true);
         }
         console.log("user--->", user);
+        console.log("userImage---->", userImage);
         localStorage.setItem("user", JSON.stringify(user));
       })
       .catch((error) => {

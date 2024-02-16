@@ -5,12 +5,10 @@ import { ImageContext } from "./imageContext";
 export default function ImageProvider({ children }: { children: any }) {
   const [promptImage, setPromptImage] = useState("");
   const [imageType, setIamgeType] = useState("Realistic");
+  const [userImage, setUserImage] = useState<any | null >();
   const [promptCreater, setPromptCreater] = useState("testImage");
-  const [prevImage, setPrevImage] = useState(
-    "/Assests/homeAssests/firstImage.jpg"
-  );
-  let user =
-    typeof window !== "undefined" ? localStorage.getItem("user") : null;
+  const [prevImage, setPrevImage] = useState("/Assests/homeAssests/firstImage.jpg");
+  let user = typeof window !== "undefined" ? localStorage.getItem("user") : null;
   const [defaultLoader, setDefaultLoader] = useState<any>(false);
   const [authModal, setAuthModal] = useState<any>(true);
   const [switChModal, setSwitChModal] = useState<any>("signin");
@@ -36,10 +34,14 @@ export default function ImageProvider({ children }: { children: any }) {
   const LoggedInHandler = (bol: any) => {
     setLoggedIn(bol);
   };
+  const userImageHandler = (img: any) => {
+    setUserImage(img);
+  };
   return (
     <ImageContext.Provider
       value={{
         image: promptImage,
+        userImage:userImage,
         prevImage: prevImage,
         authModal: authModal,
         imageType: imageType,
@@ -47,6 +49,7 @@ export default function ImageProvider({ children }: { children: any }) {
         defaultLoader,
         loggedIn,
         switChModal,
+        
         promptImageHandler,
         setDefaultLoader,
         prevImageHandler,
@@ -55,6 +58,7 @@ export default function ImageProvider({ children }: { children: any }) {
         authModalHandler,
         LoggedInHandler,
         switchModalHandler,
+        userImageHandler,
       }}
     >
       {children}
