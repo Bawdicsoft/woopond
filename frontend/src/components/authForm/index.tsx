@@ -10,7 +10,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useImageContext } from "../contextApi/imageContext";
 import { FcGoogle } from "react-icons/fc";
-import { FaApple } from "react-icons/fa6";
+import { TfiFacebook } from "react-icons/tfi";
+import { GrTwitter } from "react-icons/gr";
 import Link from "next/link";
 
 interface AuthFormProps {
@@ -96,7 +97,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full  items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div className="flex min-h-full  items-end justify-center p-4 sm:items-center sm:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -106,14 +107,14 @@ const AuthForm: React.FC<AuthFormProps> = ({
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative md:w-[400px] transform rounded-lg bg-lightGreen text-left shadow-xl transition-all sm:my-8 p-3">
+              <Dialog.Panel className="relative md:w-[400px] transform rounded-lg bg-lightGreen  shadow-xl transition-all sm:my-8 p-3">
                 <div className="flex w-full h-full flex-col justify-center bg-lightGreen text-black">
                   <div className="sm:mx-auto sm:w-full sm:max-w-md border p-5 border-green rounded-xl bg-black">
                     <form onSubmit={submitHandler} className="space-y-6 ">
                       <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-white ">
                         {signUp
                           ? "Sign Up Your Account!"
-                          : "Sign in to Your Account!"}
+                          : "Sign in to Your Account!"} 
                       </h2>
 
                       <input
@@ -158,22 +159,32 @@ const AuthForm: React.FC<AuthFormProps> = ({
                         {signUp ? " Sign up" : "Sign in"}
                       </button>
                       <button
+                        type="submit"
+                        className="flex gap-1  md:gap-3 items-center w-full justify-center uppercase rounded-md border bg-lightGreen  md:px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-green"
+                        // onClick={() => setOpen(true)}
+                      >
+                        <TfiFacebook  className=" ml-5 w-5 h-5 md:w-6 md:h-6 text-gray-700" />{" "}
+                        <span className="">CONTINUE WITH FACEBOOK</span>
+                      </button>
+
+                      <button
                         onClick={signInWithGoogle}
                         type="submit"
                         className="flex gap-1  md:gap-2 w-full justify-center items-center rounded-md md:px-3 border bg-lightGreen  py-1.5 text-sm font-semibold leading-6  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-green"
                         // onClick={() => setOpen(true)}
                       >
-                        <FcGoogle className="w-5 h-5 md:w-6 md:h-6" />{" "}
+                        <FcGoogle className="w-5 h-5 mr-2  md:w-6 md:h-6" />{" "}
                         <span className="">CONTINUE WITH GOOGLE</span>
                       </button>
 
+                     
                       <button
                         type="submit"
                         className="flex gap-1  md:gap-2 items-center w-full justify-center uppercase rounded-md border bg-lightGreen  md:px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-green"
                         // onClick={() => setOpen(true)}
                       >
-                        <FaApple className="-ml-2 w-5 h-5 md:w-6 md:h-6 text-gray-700" />{" "}
-                        <span className="">CONTINUE WITH APPLE</span>
+                        <GrTwitter  className=" w-5 h-5 mr-1 md:w-6 md:h-6 text-gray-700" />{" "}
+                        <span className="">CONTINUE WITH TWITTER</span>
                       </button>
                     </form>
                     {!signUp ? (

@@ -62,7 +62,7 @@ export default function NavBar() {
         </Link>
         <button
           type="button"
-          className=" inline-flex items-center order-2 p-2  justify-center text-sm text-lightGray rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-lightGreen"
+          className=" inline-flex items-center order-2 p-2 mr-3 justify-center text-sm text-lightGray rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-lightGreen"
           onClick={() => setToggle(!toggle)}
         >
           <span className="sr-only">Open main menu</span>
