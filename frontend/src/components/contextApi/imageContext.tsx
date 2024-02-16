@@ -9,6 +9,7 @@ import {
 
 interface ImageContextProps {
   image: string; // Assuming image is a string, you can adjust the type accordingly
+  userImage: string; // Assuming image is a string, you can adjust the type accordingly
   prevImage: string; // Assuming image is a string, you can adjust the type accordingly
   imageType: string; // Assuming image is a string, you can adjust the type accordingly
   promptCreater: string; // Assuming image is a string, you can adjust the type accordingly
@@ -19,6 +20,7 @@ interface ImageContextProps {
   promptImageHandler: Dispatch<SetStateAction<string>>;
   prevImageHandler: Dispatch<SetStateAction<string>>;
   imageTypeHandler: Dispatch<SetStateAction<string>>;
+  userImageHandler: Dispatch<string>;
   promptCreaterHandler: Dispatch<SetStateAction<string>>;
   LoggedInHandler: Dispatch<SetStateAction<string>>;
   setDefaultLoader: Dispatch<boolean>;
