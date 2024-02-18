@@ -4,6 +4,8 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  FacebookAuthProvider,
+  getRedirectResult,
 } from "firebase/auth";
 import { auth } from "@/app/firebase";
 import { Dialog, Transition } from "@headlessui/react";
@@ -18,7 +20,7 @@ interface AuthFormProps {
   signUpHandler?: (
     email: string,
     password: string,
-    
+
     conformPassword: string
   ) => void;
   signInHandler?: (email: string, password: string) => void;
@@ -66,15 +68,22 @@ const AuthForm: React.FC<AuthFormProps> = ({
       const { user } = await signInWithPopup(auth, provider);
       console.log("user---->", user);
       console.log("userName---->", user.displayName);
-       if(user){
+      if (user) {
         setModalCheck(false);
-       }
-      setUserImage(user?.photoURL ?? user?.displayName?.slice(0,8) ?? "");
+      }
+      setUserImage(user?.photoURL ?? user?.displayName?.slice(0, 8) ?? "");
       localStorage.setItem("user", JSON.stringify(user.displayName));
       // console.log("provider---->", provider);
     } catch (error) {
       console.error("Sign-in error:", error);
     }
+  };
+
+  const signInWithFacebook = async () => {
+    const providerFaceBook = new FacebookAuthProvider();
+    signInWithPopup(auth, providerFaceBook)
+      .then((result) => console.log("resultFaceBook---->", result))
+      .catch((error) => console.log("errorFaceBook-->", error));
   };
   return (
     <Transition.Root show={modal} as={Fragment}>
@@ -114,7 +123,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
                       <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-white ">
                         {signUp
                           ? "Sign Up Your Account!"
-                          : "Sign in to Your Account!"} 
+                          : "Sign in to Your Account!"}
                       </h2>
 
                       <input
@@ -161,9 +170,9 @@ const AuthForm: React.FC<AuthFormProps> = ({
                       <button
                         type="submit"
                         className="flex gap-1  md:gap-3 items-center w-full justify-center uppercase rounded-md border bg-lightGreen  md:px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-green"
-                        // onClick={() => setOpen(true)}
+                        onClick={signInWithFacebook}
                       >
-                        <TfiFacebook  className=" ml-5 w-5 h-5 md:w-6 md:h-6 text-gray-700" />{" "}
+                        <TfiFacebook className=" ml-5 w-5 h-5 md:w-6 md:h-6 text-gray-700" />{" "}
                         <span className="">CONTINUE WITH FACEBOOK</span>
                       </button>
 
@@ -177,13 +186,12 @@ const AuthForm: React.FC<AuthFormProps> = ({
                         <span className="">CONTINUE WITH GOOGLE</span>
                       </button>
 
-                     
                       <button
                         type="submit"
                         className="flex gap-1  md:gap-2 items-center w-full justify-center uppercase rounded-md border bg-lightGreen  md:px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-green"
                         // onClick={() => setOpen(true)}
                       >
-                        <GrTwitter  className=" w-5 h-5 mr-1 md:w-6 md:h-6 text-gray-700" />{" "}
+                        <GrTwitter className=" w-5 h-5 mr-1 md:w-6 md:h-6 text-gray-700" />{" "}
                         <span className="">CONTINUE WITH TWITTER</span>
                       </button>
                     </form>
