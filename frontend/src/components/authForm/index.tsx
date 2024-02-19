@@ -68,12 +68,12 @@ const AuthForm: React.FC<AuthFormProps> = ({
     try {
       const { user } = await signInWithPopup(auth, provider);
       console.log("user---->", user);
-      console.log("userName---->", user.displayName);
+      console.log("userNameGoogle---->", user);
       if (user) {
         setModalCheck(false);
       }
       setUserImage(user?.photoURL ?? user?.displayName?.slice(0, 8) ?? "");
-      localStorage.setItem("user", JSON.stringify(user.displayName));
+      localStorage.setItem("user", JSON.stringify(user));
       // console.log("provider---->", provider);
     } catch (error) {
       console.error("Sign-in error:", error);
@@ -89,7 +89,6 @@ const AuthForm: React.FC<AuthFormProps> = ({
   const signInWithTwitter = async () => {
     const providerTwitter = new TwitterAuthProvider();
     try {
-      // const { user } = await signInWithPopup(auth, providerTwitter);
       signInWithPopup(auth, providerTwitter)
         .then((result) => {
           if (result.user) {

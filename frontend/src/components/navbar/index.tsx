@@ -24,7 +24,7 @@ export default function NavBar() {
   const FetchUserImage = useImageContext();
   const modalCheck = useImageContext();
   const userImage = FetchUserImage.userImage;
-  const setModal = authModal.authModalHandler; 
+  const setModal = authModal.authModalHandler;
   const setSwitchModal = authModal.switchModalHandler;
   const [toggle, setToggle] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -44,7 +44,10 @@ export default function NavBar() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [toggle]);
-
+  const userJson = localStorage.getItem("user"); // Get the user JSON string from localStorage
+  const user = userJson ? JSON.parse(userJson) : null; // Parse the JSON string or set user to null if userJson is null
+  const userImg = user?.photoURL;
+  console.log(userImg);
   return (
     <nav className="border-gray-200 bg-black z-50 md:z-30 relative max-w-6xl mx-auto">
       <div className="flex justify-between mx-auto md:px-4 lg:px-0 py-2 md:py-4 items-center">
@@ -116,27 +119,22 @@ export default function NavBar() {
                 Text to video
               </Link>
             </li>
-          
           </ul>
         </div>
 
         {/* toggle */}
 
-        {userImage ? (
+        {userImg ? (
           <Menu as="div" className="relative ml-3 hidden md:block">
             <div>
               <Menu.Button className="  relative flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                 <span className="absolute -inset-1.5" />
                 <span className="sr-only">Open user menu</span>
-                {userImage.length > 2 ? (
-                  <img
-                    className="h-8 w-8 rounded-full"
-                    src={userImage}
-                    alt=""
-                  />
+                {userImg.length > 2 ? (
+                  <img className="h-8 w-8 rounded-full" src={userImg} alt="" />
                 ) : (
                   <span className="border-2 border-lightGreen text-white uppercase h-12 w-12 p-2 rounded-full text-center bg-green font-bold text-xl">
-                    {userImage}
+                    {userImg}
                   </span>
                 )}
               </Menu.Button>
@@ -158,7 +156,8 @@ export default function NavBar() {
                       className={classNames(
                         active ? "bg-gray-100" : "",
                         "block px-4 py-2 text-sm "
-                      )}>
+                      )}
+                    >
                       Your Profile
                     </a>
                   )}
@@ -170,7 +169,8 @@ export default function NavBar() {
                       className={classNames(
                         active ? "bg-gray-100" : "",
                         "block px-4 py-2 text-sm "
-                      )}>
+                      )}
+                    >
                       Settings
                     </a>
                   )}
@@ -183,7 +183,8 @@ export default function NavBar() {
                       className={classNames(
                         active ? "bg-gray-100" : "",
                         "block px-4 py-2 text-sm "
-                      )}>
+                      )}
+                    >
                       Sign out
                     </a>
                   )}
@@ -228,28 +229,29 @@ export default function NavBar() {
           >
             <div className="w-full">
               <ul className="flex flex-col p-2 mt-4 items-center font-medium border border-green-200 rounded-lg bg-black">
-                 <li>
-                 {userImage ? (
-                  <Link
-                    href="#"
-                    className="  relative flex justify-center rounded-full text-sm "
-                  >
-                    <span className="absolute -inset-1.5" />
-                    <span className="sr-only">Open user menu</span>
-                    {userImage.length > 2 ? (
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src={userImage}
-                        alt=""
-                      />
-                    ) : (
-                      <span className="border-2 border-lightGreen text-white uppercase h-12 w-12 p-2 rounded-full text-center bg-green font-bold text-xl">
-                        {userImage}
-                      </span>
-                    )}
+                <li>
+                  {userImage ? (
+                    <Link
+                      href="#"
+                      className="  relative flex justify-center rounded-full text-sm "
+                    >
+                      <span className="absolute -inset-1.5" />
+                      <span className="sr-only">Open user menu</span>
+                      {userImage.length > 2 ? (
+                        <img
+                          className="h-8 w-8 rounded-full"
+                          src={userImage}
+                          alt=""
+                        />
+                      ) : (
+                        <span className="border-2 border-lightGreen text-white uppercase h-12 w-12 p-2 rounded-full text-center bg-green font-bold text-xl">
+                          {userImage}
+                        </span>
+                      )}
                     </Link>
-                    ):""}
-                
+                  ) : (
+                    ""
+                  )}
                 </li>
                 <li>
                   <Link
@@ -291,19 +293,25 @@ export default function NavBar() {
                 </li>
                 <li>
                   {userImage ? (
-                   <a
-                    onClick={() => {setToggle(!toggle);handleLogout()}}
-                    href="/"
-                    className="block py-2 px-3 text-white font-semibold ">
-                    Sign out ⇒
-                  </a> ):(
-                   <Link
-                   onClick={() => setModal(true)}
-                   href="/"
-                   className="block py-2 px-3 text-white font-semibold ">
-                   Login ⇒
-                 </Link> 
-                  )} 
+                    <a
+                      onClick={() => {
+                        setToggle(!toggle);
+                        handleLogout();
+                      }}
+                      href="/"
+                      className="block py-2 px-3 text-white font-semibold "
+                    >
+                      Sign out ⇒
+                    </a>
+                  ) : (
+                    <Link
+                      onClick={() => setModal(true)}
+                      href="/"
+                      className="block py-2 px-3 text-white font-semibold "
+                    >
+                      Login ⇒
+                    </Link>
+                  )}
                 </li>
                 <hr className="my-4 h-[2px] border-t-0 bg-transparent bg-gradient-to-r from-transparent via-green-200 to-transparent opacity-25" />
               </ul>
