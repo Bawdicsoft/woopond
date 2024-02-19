@@ -89,8 +89,8 @@ const AuthForm: React.FC<AuthFormProps> = ({
   const signInWithTwitter = async () => {
     const providerTwitter = new TwitterAuthProvider();
     signInWithPopup(auth, providerTwitter)
-      .then((result) => console.log("resultFaceBook---->", result))
-      .catch((error) => console.log("errorFaceBook-->", error))
+      .then((result) => console.log("resultTwitter---->", result))
+      .catch((error) => console.log("errorFTwitter->", error));
   };
   return (
     <Transition.Root show={modal} as={Fragment}>
