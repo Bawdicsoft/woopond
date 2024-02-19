@@ -6,6 +6,7 @@ import {
   signInWithPopup,
   FacebookAuthProvider,
   getRedirectResult,
+  TwitterAuthProvider,
 } from "firebase/auth";
 import { auth } from "@/app/firebase";
 import { Dialog, Transition } from "@headlessui/react";
@@ -84,6 +85,12 @@ const AuthForm: React.FC<AuthFormProps> = ({
     signInWithPopup(auth, providerFaceBook)
       .then((result) => console.log("resultFaceBook---->", result))
       .catch((error) => console.log("errorFaceBook-->", error));
+  };
+  const signInWithTwitter = async () => {
+    const providerTwitter = new TwitterAuthProvider();
+    signInWithPopup(auth, providerTwitter)
+      .then((result) => console.log("resultFaceBook---->", result))
+      .catch((error) => console.log("errorFaceBook-->", error))
   };
   return (
     <Transition.Root show={modal} as={Fragment}>
@@ -187,6 +194,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
                       </button>
 
                       <button
+                        onClick={signInWithTwitter}
                         type="submit"
                         className="flex gap-1  md:gap-2 items-center w-full justify-center uppercase rounded-md border bg-lightGreen  md:px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-green"
                         // onClick={() => setOpen(true)}
