@@ -98,7 +98,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
           setUserImage(
             result.user?.photoURL ?? result.user?.displayName?.slice(0, 8) ?? ""
           );
-          localStorage.setItem("user", JSON.stringify(user.displayName));
+          localStorage.setItem("user", JSON.stringify(result.user.displayName));
         })
         .catch((error) => console.log("errorFTwitter->", error));
     } catch (error) {
