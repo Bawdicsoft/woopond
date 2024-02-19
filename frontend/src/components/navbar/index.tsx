@@ -6,7 +6,6 @@ import { useImageContext } from "../contextApi/imageContext";
 import { Menu } from "@headlessui/react";
 import { Transition } from "@headlessui/react";
 import { auth } from "@/app/firebase";
-
 import { Fragment } from "react";
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -27,7 +26,6 @@ export default function NavBar() {
   const userImage = FetchUserImage.userImage;
   const setModal = authModal.authModalHandler; 
   const setSwitchModal = authModal.switchModalHandler;
-
   const [toggle, setToggle] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const handleClickOutside = (event: MouseEvent) => {

@@ -88,9 +88,22 @@ const AuthForm: React.FC<AuthFormProps> = ({
   };
   const signInWithTwitter = async () => {
     const providerTwitter = new TwitterAuthProvider();
-    signInWithPopup(auth, providerTwitter)
-      .then((result) => console.log("resultTwitter---->", result))
+    try{
+      const { user } = await signInWithPopup(auth, providerTwitter);
+      signInWithPopup(auth, providerTwitter)
+      .then((result) => {
+        if (user) {
+          setModalCheck(false);
+        }
+        setUserImage(user?.photoURL ?? user?.displayName?.slice(0, 8) ?? "");
+        localStorage.setItem("user", JSON.stringify(user.displayName));
+      })
       .catch((error) => console.log("errorFTwitter->", error));
+     
+      
+    }catch (error) {
+      console.error("Sign-in error:", error);
+    }
   };
   return (
     <Transition.Root show={modal} as={Fragment}>
