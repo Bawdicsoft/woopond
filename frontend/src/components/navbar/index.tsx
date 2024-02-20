@@ -44,8 +44,10 @@ export default function NavBar() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [toggle]);
-  const userJson = localStorage.getItem("user"); // Get the user JSON string from localStorage
-  const user = userJson ? JSON.parse(userJson) : null; // Parse the JSON string or set user to null if userJson is null
+  let userimg =
+    typeof window !== "undefined" ? localStorage.getItem("user") : null;
+  // const userJson = localStorage.getItem("user"); // Get the user JSON string from localStorage
+  const user = userimg ? JSON.parse(userimg) : null; // Parse the JSON string or set user to null if userJson is null
   const userImg = user?.photoURL;
   console.log(userImg);
   return (
