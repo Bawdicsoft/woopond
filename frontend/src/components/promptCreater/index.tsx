@@ -2,9 +2,12 @@
 // import { client, GenerationStyle, Status } from "imaginesdk";
 import { useContext, useRef, useState } from "react";
 import { useImageContext } from "../contextApi/imageContext";
+import AuthModal from "../AuthModal";
 import Image from "next/image";
 
 export default function PromptCreater() {
+  const [open , setOpen ] = useState(true)
+  const [openModal , setOpenModal ] = useState<any>(false)
   const generatedImage = useImageContext();
   const setImageFetch = generatedImage.promptImageHandler;
   const setLoader = generatedImage.setDefaultLoader;
@@ -13,6 +16,10 @@ export default function PromptCreater() {
   const setPromptCreater = generatedImage.promptCreaterHandler;
   const [imgData, setImgData] = useState("");
   const promptRef = useRef<any>();
+  let user = typeof window !== "undefined" ? localStorage.getItem("user") : null;
+  let calcImages =
+    typeof window !== "undefined" ? localStorage.getItem("calcImages") : null;
+
   // const [imageFetch, setImageFetch] = useState<any>();
 
   // const imageHandler = async (e: any) => {
@@ -59,40 +66,51 @@ export default function PromptCreater() {
   //     setLoader(false);
   //   }
   // };
-
+let test;
   const imageHandler = async (e: any) => {
+    let countImg = 0;
     setLoader(true);
     setImageFetch("");
     e.preventDefault();
     const prompt = promptRef.current.value;
     const randomString = Math.random().toFixed(7);
-    console.log("randomString--->", randomString);
-    const augmentedInputValue = `${imageType} ${prompt} ${randomString}`;
-    try {
-      const response = await fetch("/api/prompt-to-img", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          input: augmentedInputValue,
-          modelUrl:
-            "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5",
-        }),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to fetch image");
+    // console.log("randomString--->", randomString);
+   if (!user && calcImages && calcImages >= "3") {
+      setOpenModal(true)
+    } else  {
+      const augmentedInputValue = `${imageType} ${prompt} ${randomString}`;
+      try {
+        const response = await fetch("/api/prompt-to-img", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            input: augmentedInputValue,
+            modelUrl:
+              "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5",
+          }),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch image");
+        }
+        console.log("response--->", response);
+        const data = await response.arrayBuffer();
+        const blob = new Blob([data], { type: "image/png" });
+        const imgUrl = URL.createObjectURL(blob);
+        setImageFetch(imgUrl);
+        setPrevImage(imgUrl);
+        setPromptCreater(prompt);
+        if (calcImages && calcImages >= "0") {
+          countImg = parseInt(calcImages) + 1;
+          localStorage.setItem("calcImages", JSON.stringify(countImg));
+        } else {
+          localStorage.setItem("calcImages", JSON.stringify(0));
+        }
+        console.log("imgUrl---->", imgUrl);
+      } catch (err) {
+        console.log("errRelated---->", err);
       }
-      console.log("response--->", response);
-      const data = await response.arrayBuffer();
-      const blob = new Blob([data], { type: "image/png" });
-      const imgUrl = URL.createObjectURL(blob);
-      setImageFetch(imgUrl);
-      setPrevImage(imgUrl);
-      setPromptCreater(prompt);
-      console.log("imgUrl---->", imgUrl);
-    } catch (err) {
-      console.log("err---->", err);
     }
   };
 
@@ -120,6 +138,7 @@ export default function PromptCreater() {
       {/* <h2 className="mx-auto font-inika text-xl md:text-2xl lg:text-[28px] xl:text-[32px] py-1 md:py-2 lg:pb-2 font-bold text-primary">
         Hello da Vinci,Start Creating Now!
       </h2> */}
+      {/* {console.log(test)} */}
       <form
         onSubmit={imageHandler}
         className="focus:ring-4 border-4  border-white rounded-full p-1"
@@ -148,6 +167,10 @@ export default function PromptCreater() {
           </button>
         </div>
       </form>
+      <div className="absolute z-50">
+
+      {openModal && <AuthModal setOpen={setOpen} open={open} />}
+      </div>
       {/* {imageFetch && (
         <Image
           src={imageFetch}

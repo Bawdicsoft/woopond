@@ -104,7 +104,7 @@ export default function HeroSection() {
                         onClick={() => {
                           setImageType(data.title), setBorder(index);
                         }}
-                        className={`w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-28 xl:h-28 rounded-3xl ${
+                        className={`w-16 h-16 md:w-24   md:h-24 lg:w-28 lg:h-28 xl:w-28 xl:h-28 rounded-3xl ${
                           border === index ? "border-4 border-white" : ""
                         }`}
                       >
@@ -192,7 +192,7 @@ export default function HeroSection() {
                 </div>
                 <div className="grid grid-cols-2 md:flex gap-2 xl:gap-4 py-5 max-w-sm md:justify-center">
                   <button className="flex gap-2 justify-center items-center md:text-base lg:text-lg order-1 font-inter md:order-2 bg-lightGreen font-semibold text-black px-3 text-sm md:px-8 lg:px-12 py-4 md:py-4 lg:py-3 hover:bg-gray-900 rounded-full">
-                    <span>Share</span>{" "}
+                    <span>Share</span>
                     <IoMdShareAlt className="h-5 w-5 lg:w-6 lg:h-6 text-black font-bold" />
                   </button>
                   {/* <button className="order-2 font-inter md:order-1 col-span-2 bg-lightGreen md:text-base lg:text-lg font-semibold text-gray-700 px-5 text-sm md:px-8 py-4 lg:py-4 md:py-4 hover:bg-teal-300 rounded-full">
@@ -202,7 +202,7 @@ export default function HeroSection() {
                     onClick={handleDownload}
                     className="flex gap-2 justify-center items-center bg-lightGreen font-inter md:text-base lg:text-lg font-semibold text-black px-3 text-sm md:px-8 md:py-4 lg:px-12 py-4 lg:py-3  hover:bg-gray-900 rounded-full"
                   >
-                    <span>Save </span>{" "}
+                    <span>Save </span>
                     <BiSolidDownload className="h-5 w-5 lg:w-6 lg:h-6 text-black font-bold" />
                   </button>
                 </div>

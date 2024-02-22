@@ -14,6 +14,7 @@ const handleLogout = () => {
   signOut(auth)
     .then(() => {
       localStorage.removeItem("user");
+      localStorage.removeItem("calcImages");
       console.log("Signed out successfully");
     })
     .catch((error) => {});
