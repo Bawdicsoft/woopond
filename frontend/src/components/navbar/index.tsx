@@ -88,7 +88,7 @@ export default function NavBar() {
         </button>
         <div className="hidden w-full md:block md:w-auto">
           <ul className="font-normal font-inter lg:text-lg xl:text-lg flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-4 xl:space-x-8 md:mt-0 md:border-0">
-            <li>
+            {/* <li>
               <Link
                 href="#"
                 className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:p-0 md:hover:text-blue-700 relative before:content-[''] before:absolute before:block before:w-full before:h-[2px] 
@@ -99,7 +99,7 @@ export default function NavBar() {
               >
                 Home
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 href="/"
