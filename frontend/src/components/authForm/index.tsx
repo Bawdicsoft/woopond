@@ -311,7 +311,7 @@ export default AuthForm;
     </form>
 
     <p className="mt-10 text-center text-sm text-white">
-      Already a Wooponder?
+      Already a Woponder?
       <a
         href="#"
         className="font-semibold leading-6  hover:text-indigo-500 underline"

@@ -9,7 +9,7 @@ import TypedText from "./animationText";
 export default function HeaderSection() {
   ("");
   const animatedText =
-    "I am WooPond, your creative companion in crafting digital masterpieces. Together, we shall embark on a journey to bring your imaginative visions to life, weaving artistry into the fabric of the digital landscape. As your AI ally, I stand ready to assist you in unleashing the full spectrum of your creativity, transforming ordinary ideas into extraordinary works of art. Let the collaboration commence and let the digital canvas become the playground where innovation and ingenuity dance hand in hand!";
+    "I am WoPond, your creative companion in crafting digital masterpieces. Together, we shall embark on a journey to bring your imaginative visions to life, weaving artistry into the fabric of the digital landscape. As your AI ally, I stand ready to assist you in unleashing the full spectrum of your creativity, transforming ordinary ideas into extraordinary works of art. Let the collaboration commence and let the digital canvas become the playground where innovation and ingenuity dance hand in hand!";
   return (
     <div className="bg-black text-start">
       <section className="relative  h-[800px] md:h-[600px] lg:h-[700px]  max-w-6xl mx-auto px-5 xl:px-0 ">

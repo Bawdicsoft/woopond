@@ -56,12 +56,12 @@ export default function NavBar() {
       <div className="flex justify-between mx-auto md:px-4 lg:px-0 py-2 md:py-4 items-center">
         <Link href="/" className="flex items-center">
           <img
-            src="/Assests/homeAssests/image.png"
+            src="/Assests/homeAssests/logo final.png"
             className="h-12 md:h-20 lg:h-24 px-2"
-            alt="WooPond Logo"
+            alt="WoPond Logo"
           />
           {/* <span className="text-xl md:text-2xl lg:text-2xl -ml-2 font-bold font-inika text-primary">
-            WooPond
+            WoPond
           </span> */}
         </Link>
         <button
