@@ -8,6 +8,7 @@ import { useState } from "react";
 import ImageProvider from "@/components/contextApi/imageProvider";
 import Register from "@/components/registeration";
 import NavBar from "@/components/navbar";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-4PTWWCK24E"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-4PTWWCK24E');
+            `,
+          }}
+        />
+      </Head>
       <body className={inter.className}>
         <ImageProvider>
           <div className="bg-black">
