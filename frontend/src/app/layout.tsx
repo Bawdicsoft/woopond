@@ -8,7 +8,7 @@ import { useState } from "react";
 import ImageProvider from "@/components/contextApi/imageProvider";
 import Register from "@/components/registeration";
 import NavBar from "@/components/navbar";
-import Head from "next/head";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,22 +24,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-4PTWWCK24E"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-4PTWWCK24E');
-            `,
-          }}
-        />
-      </Head>
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+      />
+      <Script
+        id="gtag-init"
+        strategy="lazyOnload"
+        dangerouslySetInnerHTML={{
+          __html: ` window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)}
+          gtag('js', new Date());
+        
+          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');`,
+        }}
+      />
+
       <body className={inter.className}>
         <ImageProvider>
           <div className="bg-black">
