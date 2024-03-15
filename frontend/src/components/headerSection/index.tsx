@@ -102,16 +102,16 @@ const DrawOutlineButton = ({ children, ...rest }: { children: any }) => {
       <span>{children}</span>
 
       {/* TOP */}
-      <span className="absolute group-hover:rounded-xl left-0 top-0 h-[2px] w-0 bg-lightGreen transition-all duration-100 group-hover:w-full" />
+      <span className="absolute group-hover:rounded-xl left-0 top-0 h-[2px] w-0 bg-lightGreen transition-all duration-300 group-hover:w-full" />
 
       {/* RIGHT */}
-      <span className="absolute group-hover:rounded-xl right-0 top-0 h-0 w-[2px] bg-lightGreen transition-all delay-100 duration-100 group-hover:h-full" />
+      <span className="absolute group-hover:rounded-xl right-0 top-0 h-0 w-[2px] bg-lightGreen transition-all delay-100 duration-300 group-hover:h-full" />
 
       {/* BOTTOM */}
-      <span className="absolute group-hover:rounded-xl bottom-0 right-0 h-[2px] w-0 bg-white transition-all delay-200 duration-100 group-hover:w-full" />
+      <span className="absolute group-hover:rounded-xl bottom-0 right-0 h-[2px] w-0 bg-white transition-all delay-200 duration-300 group-hover:w-full" />
 
       {/* LEFT */}
-      <span className="absolute group-hover:rounded-xl bottom-0 left-0 h-0 w-[2px] bg-lightGray transition-all delay-300 duration-100 group-hover:h-full" />
+      <span className="absolute group-hover:rounded-xl bottom-0 left-0 h-0 w-[2px] bg-lightGray transition-all delay-300 duration-300 group-hover:h-full" />
     </button>
   );
 };
