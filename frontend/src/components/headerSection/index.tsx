@@ -56,7 +56,7 @@ export default function HeaderSection() {
             alt="bgimage"
             width={500}
             height={500}
-            className="w-full h-full"
+            className="w-full h-full animate-pulse"
           />
         </div>
         <div className="absolute z-10 left-16 md:left-32 lg:left-48 xl:left-60 top-[40px] w-16 h-16 md:w-24 md:h-24 opacity-60">
@@ -65,7 +65,7 @@ export default function HeaderSection() {
             alt="bgimage"
             width={500}
             height={500}
-            className="w-full h-full"
+            className="w-full h-full animate-pulse"
           />
         </div>
         <div className="absolute z-10 left-36 top-20 md:left-60 lg:left-[350px]  xl:left-[430px] lg:top-[65px] w-24 h-24 md:w-40 md:h-40 opacity-60">
@@ -74,7 +74,7 @@ export default function HeaderSection() {
             alt="bgimage"
             width={500}
             height={500}
-            className="w-full h-full"
+            className="w-full h-full animate-pulse"
           />
         </div>
         <div className="absolute z-10 right-0 xl:right-56 top-[150px] md:top-[70px] md:w-[300px] w-[150px] h-[150px] md:h-[300px] opacity-60">
@@ -83,7 +83,7 @@ export default function HeaderSection() {
             alt="bgimage"
             width={500}
             height={500}
-            className="w-full h-full"
+            className="w-full h-full animate-pulse"
           />
         </div>
       </section>
