@@ -203,12 +203,14 @@ export default function NavBar() {
                 setModal(true);
               }}
             >
-              <Link
-                href="#"
-                className="hidden md:inline bg-lightGreen hover:bg-teal-300 font-semibold lg:font-bold lg:text-lg py-2 px-4 md:border-0 md:py-3 md:px-3 rounded-full "
-              >
-                Sign Up
-              </Link>
+              <DrawOutlineButton>
+                <Link
+                  href="#"
+                  className="hidden md:inline bg-lightGreen hover:bg-black hover:text-lightGreen hover:bg-teal-300 font-semibold lg:font-bold lg:text-lg py-2 px-4 md:border-0 md:py-3 md:px-3 rounded-full "
+                >
+                  Sign Up
+                </Link>
+              </DrawOutlineButton>
             </button>
             <button
               onClick={() => {
@@ -218,7 +220,7 @@ export default function NavBar() {
             >
               <Link
                 href="#"
-                className="hidden md:inline outline-none  border-2 text-lightGreen border-lightGreen hover:bg-teal-300 font-semibold lg:font-bold lg:text-lg py-2 px-4 md:py-3 md:px-3 rounded-full text-gray-800"
+                className="hidden md:inline outline-none duration-500 transition hover:text-black hover:bg-lightGreen border-2 text-lightGreen border-lightGreen hover:bg-teal-300 font-semibold lg:font-bold lg:text-lg py-2 px-4 md:py-3 md:px-3 rounded-full text-gray-800"
               >
                 Log In
               </Link>
@@ -325,3 +327,25 @@ export default function NavBar() {
     </nav>
   );
 }
+const DrawOutlineButton = ({ children, ...rest }: { children: any }) => {
+  return (
+    <button
+      {...rest}
+      className="group rounded-xl relative py-2 font-medium text-slate-100 transition-colors duration-[400ms] hover:text-indigo-300"
+    >
+      <span>{children}</span>
+
+      {/* TOP */}
+      <span className="absolute group-hover:rounded-xl left-0 top-0 h-[2px] w-0 bg-lightGreen transition-all duration-300 group-hover:w-full" />
+
+      {/* RIGHT */}
+      <span className="absolute group-hover:rounded-xl right-0 top-0 h-0 w-[2px] bg-lightGreen transition-all delay-100 duration-300 group-hover:h-full" />
+
+      {/* BOTTOM */}
+      <span className="absolute group-hover:rounded-xl bottom-0 right-0 h-[2px] w-0 bg-white transition-all delay-200 duration-300 group-hover:w-full" />
+
+      {/* LEFT */}
+      <span className="absolute group-hover:rounded-xl bottom-0 left-0 h-0 w-[2px] bg-lightGray transition-all delay-300 duration-300 group-hover:h-full" />
+    </button>
+  );
+};
