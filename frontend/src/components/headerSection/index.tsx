@@ -32,15 +32,18 @@ export default function HeaderSection() {
                 {/* <button className="bg-lightGreen text-black font-semibold rounded-xl text-lg font-inter p-2  md:p-4">
                   Generate Now
                 </button> */}
-                <ScrollLink
-                  to="generateNow" // This should match the ID of the element you want to scroll to
-                  smooth={true}
-                  duration={600}
-                  offset={-20} // Adjust this offset based on your layout
-                  className="bg-lightGreen text-black font-semibold rounded-xl text-lg font-inter p-2 cursor-pointer  md:p-4"
-                >
-                  Generate Now
-                </ScrollLink>
+
+                <DrawOutlineButton>
+                  <ScrollLink
+                    to="generateNow" // This should match the ID of the element you want to scroll to
+                    smooth={true}
+                    duration={600}
+                    offset={-20} // Adjust this offset based on your layout
+                    className="bg-lightGreen hover:bg-black hover:text-lightGreen rounded-xl text-black font-semibold text-lg font-inter p-2 cursor-pointer  md:p-4"
+                  >
+                    Generate Now
+                  </ScrollLink>
+                </DrawOutlineButton>
               </div>
             </div>
           </div>
@@ -90,3 +93,25 @@ export default function HeaderSection() {
     </div>
   );
 }
+const DrawOutlineButton = ({ children, ...rest }: { children: any }) => {
+  return (
+    <button
+      {...rest}
+      className="group rounded-xl relative py-4 font-medium text-slate-100 transition-colors duration-[400ms] hover:text-indigo-300"
+    >
+      <span>{children}</span>
+
+      {/* TOP */}
+      <span className="absolute group-hover:rounded-xl left-0 top-0 h-[2px] w-0 bg-lightGreen transition-all duration-100 group-hover:w-full" />
+
+      {/* RIGHT */}
+      <span className="absolute group-hover:rounded-xl right-0 top-0 h-0 w-[2px] bg-lightGreen transition-all delay-100 duration-100 group-hover:h-full" />
+
+      {/* BOTTOM */}
+      <span className="absolute group-hover:rounded-xl bottom-0 right-0 h-[2px] w-0 bg-white transition-all delay-200 duration-100 group-hover:w-full" />
+
+      {/* LEFT */}
+      <span className="absolute group-hover:rounded-xl bottom-0 left-0 h-0 w-[2px] bg-lightGray transition-all delay-300 duration-100 group-hover:h-full" />
+    </button>
+  );
+};
